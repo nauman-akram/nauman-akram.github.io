@@ -1,1 +1,539 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nauman Akram Butt — AI & Data Science</title>
+<style>
+  :root{
+    --bg:#0a0e17;
+    --bg2:#0f1420;
+    --card:#131926;
+    --border:#232b3d;
+    --text:#e6e9f0;
+    --muted:#8b93a7;
+    --accent:#6ee7ff;
+    --accent2:#a78bfa;
+    --accent3:#34d399;
+    --accent4:#fbbf24;
+    --grad: linear-gradient(135deg,#6ee7ff 0%,#a78bfa 50%,#f472b6 100%);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  .bg-glow{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(110,231,255,0.10), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(167,139,250,0.10), transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(52,211,153,0.08), transparent 45%);
+  }
+  .container{max-width:1100px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
+
+  /* NAV */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(10,14,23,0.75);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center;}
+  .logo{font-weight:700; font-size:1.1rem; letter-spacing:0.5px;}
+  .logo span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .nav-links{display:flex; gap:26px; list-style:none;}
+  .nav-links a{color:var(--muted); text-decoration:none; font-size:0.92rem; font-weight:500; transition:color .2s;}
+  .nav-links a:hover{color:var(--accent);}
+  @media (max-width:750px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    padding-top:100px; padding-bottom:60px; position:relative;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--accent3); font-size:0.85rem; font-weight:600;
+    background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.25);
+    padding:6px 14px; border-radius:999px; margin-bottom:24px;
+    animation:fadeUp .7s ease both;
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--accent3); box-shadow:0 0 8px var(--accent3);}
+  h1.hero-title{
+    font-size:clamp(2.4rem, 6vw, 4.4rem); font-weight:800; line-height:1.05; letter-spacing:-1.5px;
+    margin-bottom:20px; animation:fadeUp .8s ease .05s both;
+  }
+  .hero-title .grad{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero-sub{
+    font-size:clamp(1.05rem,2vw,1.35rem); color:var(--muted); max-width:640px; margin-bottom:36px;
+    animation:fadeUp .8s ease .12s both;
+  }
+  .hero-sub b{color:var(--text); font-weight:600;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px; animation:fadeUp .8s ease .18s both;}
+  .btn{
+    padding:13px 26px; border-radius:10px; font-weight:600; font-size:0.95rem; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary{background:var(--grad); color:#0a0e17;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(110,231,255,0.25);}
+  .btn-ghost{border:1px solid var(--border); color:var(--text); background:rgba(255,255,255,0.02);}
+  .btn-ghost:hover{border-color:var(--accent); transform:translateY(-2px);}
+
+  .stat-row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+    animation:fadeUp .8s ease .26s both;
+  }
+  @media (max-width:700px){ .stat-row{grid-template-columns:repeat(2,1fr);} }
+  .stat{
+    background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 16px;
+  }
+  .stat .num{font-size:1.6rem; font-weight:800; color:var(--accent);}
+  .stat .label{font-size:0.78rem; color:var(--muted); margin-top:4px;}
+
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  /* SECTION HEADERS */
+  section{padding:90px 0; position:relative;}
+  .sec-tag{color:var(--accent2); font-size:0.8rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px;}
+  .sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem); font-weight:800; margin-bottom:16px; letter-spacing:-0.5px;}
+  .sec-desc{color:var(--muted); max-width:640px; margin-bottom:48px; font-size:1.02rem;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:start;}
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+  .about-text p{color:var(--muted); margin-bottom:16px; font-size:1.02rem;}
+  .about-text b{color:var(--text);}
+  .skill-card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:24px;}
+  .skill-card h4{font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:14px;}
+  .tag-wrap{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;}
+  .tag-wrap:last-child{margin-bottom:0;}
+  .tag{background:rgba(255,255,255,0.05); border:1px solid var(--border); color:var(--text); font-size:0.78rem; padding:5px 11px; border-radius:7px;}
+
+  /* FULL TIMELINE (jobs + education combined) */
+  .timeline{position:relative; padding-left:36px; border-left:2px solid var(--border);}
+  .tl-item{position:relative; margin-bottom:40px;}
+  .tl-item:last-child{margin-bottom:0;}
+  .tl-dot{
+    position:absolute; left:-46px; top:2px; width:20px; height:20px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:0.7rem;
+    background:var(--bg); border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(110,231,255,0.08);
+  }
+  .tl-dot.edu{border-color:var(--accent4); box-shadow:0 0 0 4px rgba(251,191,36,0.08);}
+  .tl-dot.work{border-color:var(--accent3); box-shadow:0 0 0 4px rgba(52,211,153,0.08);}
+  .tl-dot.freelance{border-color:var(--accent2); box-shadow:0 0 0 4px rgba(167,139,250,0.08);}
+  .tl-card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px 24px;}
+  .tl-type{
+    display:inline-block; font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+    padding:3px 9px; border-radius:6px; margin-bottom:10px;
+  }
+  .tl-type.edu{background:rgba(251,191,36,0.1); color:var(--accent4); border:1px solid rgba(251,191,36,0.3);}
+  .tl-type.work{background:rgba(52,211,153,0.1); color:var(--accent3); border:1px solid rgba(52,211,153,0.3);}
+  .tl-type.freelance{background:rgba(167,139,250,0.1); color:var(--accent2); border:1px solid rgba(167,139,250,0.3);}
+  .tl-role{font-size:1.1rem; font-weight:700; margin-bottom:2px;}
+  .tl-meta{color:var(--muted); font-size:0.85rem; margin-bottom:12px;}
+  .tl-meta .co{color:var(--text); font-weight:600;}
+  .tl-card ul{padding-left:20px; color:var(--muted); font-size:0.92rem;}
+  .tl-card li{margin-bottom:7px;}
+  .tl-card li b{color:var(--text);}
+  .tl-card p.desc{color:var(--muted); font-size:0.92rem;}
+
+  .legend{display:flex; gap:22px; margin-bottom:36px; flex-wrap:wrap;}
+  .legend-item{display:flex; align-items:center; gap:8px; font-size:0.85rem; color:var(--muted);}
+  .legend-dot{width:11px; height:11px; border-radius:50%;}
+
+  /* PROJECTS */
+  .proj-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  @media (max-width:800px){ .proj-grid{grid-template-columns:1fr;} }
+  .proj-card{
+    background:var(--card); border:1px solid var(--border); border-radius:16px; padding:26px;
+    transition:transform .25s, border-color .25s, box-shadow .25s; height:100%;
+    display:flex; flex-direction:column;
+  }
+  .proj-card:hover{transform:translateY(-4px); border-color:rgba(110,231,255,0.35); box-shadow:0 20px 40px rgba(0,0,0,0.35);}
+  .proj-icon{
+    width:44px; height:44px; border-radius:11px; background:var(--grad); display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem; margin-bottom:16px;
+  }
+  .proj-card h3{font-size:1.1rem; margin-bottom:8px;}
+  .proj-card .proj-meta{color:var(--accent); font-size:0.78rem; font-weight:600; margin-bottom:10px;}
+  .proj-card p{color:var(--muted); font-size:0.92rem; flex-grow:1; margin-bottom:14px;}
+  .proj-metrics{display:flex; gap:16px; margin-bottom:14px; flex-wrap:wrap;}
+  .proj-metrics div{font-size:0.8rem;}
+  .proj-metrics .m-num{color:var(--accent3); font-weight:700; display:block;}
+  .proj-link{color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:600; display:inline-flex; align-items:center; gap:6px;}
+  .proj-link:hover{text-decoration:underline;}
+
+  /* PUBLICATIONS */
+  .pub-card{
+    background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px;
+    display:flex; gap:20px; align-items:flex-start;
+  }
+  .pub-badge{
+    background:rgba(167,139,250,0.12); border:1px solid rgba(167,139,250,0.3); color:var(--accent2);
+    font-size:0.72rem; font-weight:700; padding:4px 10px; border-radius:6px; white-space:nowrap; text-transform:uppercase; letter-spacing:0.5px;
+  }
+  .pub-card h3{font-size:1.15rem; margin-bottom:8px; line-height:1.4;}
+  .pub-card p{color:var(--muted); font-size:0.92rem; margin-bottom:6px;}
+  .pub-highlight{color:var(--text); font-weight:600;}
+
+  /* CONTACT */
+  .contact-box{
+    background:linear-gradient(135deg, rgba(110,231,255,0.06), rgba(167,139,250,0.06));
+    border:1px solid var(--border); border-radius:24px; padding:56px 40px; text-align:center;
+  }
+  .contact-box h2{font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800; margin-bottom:14px;}
+  .contact-box p{color:var(--muted); max-width:520px; margin:0 auto 32px;}
+  .contact-links{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .contact-links a{
+    display:flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--border);
+    color:var(--text); text-decoration:none; padding:12px 20px; border-radius:10px; font-size:0.92rem; font-weight:600;
+    transition:transform .2s, border-color .2s;
+  }
+  .contact-links a:hover{transform:translateY(-2px); border-color:var(--accent);}
+
+  footer{padding:36px 0; text-align:center; color:var(--muted); font-size:0.85rem; border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Nauman<span>.AI</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="eyebrow"><span class="dot"></span> Open to KTP Associate / PhD / AI Engineering roles</div>
+    <h1 class="hero-title">Nauman Akram Butt<br><span class="grad">AI & Data Science</span></h1>
+    <p class="hero-sub">
+      I build <b>computer vision, NLP and data-driven systems</b> that run in production — from real-time
+      object detection across 1,200+ cameras to published research on intelligent recognition systems.
+      MSc Data Analytics (Distinction) · Published at ICRITO'2025.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#journey">My Journey ↓</a>
+      <a class="btn btn-ghost" href="https://github.com/nauman-akram" target="_blank">GitHub ↗</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/nauman-a-butt/" target="_blank">LinkedIn ↗</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="num">6+</div><div class="label">Years across industry & research</div></div>
+      <div class="stat"><div class="num">1,200+</div><div class="label">Cameras in production</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">Published Conference Paper</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Commercial Client Projects</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-tag">Who I Am</div>
+    <h2 class="sec-title">Bridging research and production AI</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm an <b>AI Software Developer</b> with over three years of professional experience — and six years total since starting in data science — spanning computer vision, NLP, and applied machine learning, across both commercial delivery and academic research.</p>
+        <p>Currently, I lead development of a real-time <b>AI-powered video analytics platform</b> deployed across 400+ retail sites for one of the UK's top 5 supermarket chains, running object detection on 500+ NVIDIA Orin edge devices processing 1,200+ camera feeds.</p>
+        <p>Previously, as a <b>Data Scientist</b>, I delivered projects for commercial clients — unifying fragmented multi-source consumer data, building demand forecasting systems, and designing KPI dashboards that directly informed business decisions. Before that, I spent two years freelancing across computer vision and NLP projects for international clients.</p>
+        <p>My <b>Master's thesis</b> on enhancing Automatic Licence Plate Recognition (ALPR) systems was published at the <b>12th International Conference on Reliability, Infocom Technologies and Optimisation (ICRITO'2025)</b>, and recognised as a Top Project at the University of Bolton.</p>
+        <p>I'm actively deepening my expertise in <b>Generative AI, LLMs and RAG systems</b> through NVIDIA and Udemy coursework, and building a RAG-based retrieval system as an independent project.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Computer Vision & AI</h4>
+        <div class="tag-wrap">
+          <span class="tag">YOLO</span><span class="tag">U-Net</span><span class="tag">OpenCV</span>
+          <span class="tag">Semantic Segmentation</span><span class="tag">Edge AI</span><span class="tag">NVIDIA Orin</span>
+        </div>
+        <h4>NLP & Generative AI</h4>
+        <div class="tag-wrap">
+          <span class="tag">TF-IDF Retrieval</span><span class="tag">Sentiment Analysis</span>
+          <span class="tag">RAG</span><span class="tag">LLMs</span><span class="tag">Summarisation</span>
+        </div>
+        <h4>Languages & Frameworks</h4>
+        <div class="tag-wrap">
+          <span class="tag">Python</span><span class="tag">C#</span><span class="tag">SQL</span><span class="tag">R</span>
+          <span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span><span class="tag">FastAPI</span><span class="tag">PySpark</span>
+        </div>
+        <h4>Data & Cloud</h4>
+        <div class="tag-wrap">
+          <span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">MongoDB</span>
+          <span class="tag">Power BI</span><span class="tag">Metabase</span><span class="tag">ETL/ELT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY: full timeline of education + work -->
+  <section id="journey">
+    <div class="sec-tag">Career & Education</div>
+    <h2 class="sec-title">My Journey</h2>
+    <p class="sec-desc">From undergraduate studies through freelancing, industry roles, and a Master's with Distinction, to production AI today.</p>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:var(--accent4)"></span> Education</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--accent3)"></span> Employment</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--accent2)"></span> Freelance</div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot edu">🎓</div>
+        <div class="tl-card">
+          <span class="tl-type edu">Education</span>
+          <div class="tl-role">BSc Computer Science</div>
+          <div class="tl-meta"><span class="co">FAST — National University of Computer & Emerging Sciences</span>, Pakistan · Aug 2014 – Jun 2018</div>
+          <p class="desc">Foundational coursework in data science, machine learning, software engineering, algorithms, and object-oriented design. Final year project: an NLP-driven trend summarisation platform (BlogifyUs).</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot work">💼</div>
+        <div class="tl-card">
+          <span class="tl-type work">Employment</span>
+          <div class="tl-role">Data Analyst Trainee</div>
+          <div class="tl-meta"><span class="co">Techzo Solutions</span>, Pakistan · Mar 2019 – Aug 2019</div>
+          <p class="desc">Collaborated with clients to design and develop customised data science projects, including dashboarding and early machine learning model experimentation.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot freelance">🌐</div>
+        <div class="tl-card">
+          <span class="tl-type freelance">Freelance</span>
+          <div class="tl-role">Freelance Data Scientist</div>
+          <div class="tl-meta"><span class="co">Upwork & Fiverr</span> · 2019 – 2021</div>
+          <ul>
+            <li>Delivered a range of independent projects across <b>computer vision and NLP</b> for international clients, including EDA, data visualisation, and web scraping.</li>
+            <li>Trained custom object detection models and applied <b>transfer learning</b>, fine-tuning pre-trained architectures for client-specific use cases.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot work">💼</div>
+        <div class="tl-card">
+          <span class="tl-type work">Employment</span>
+          <div class="tl-role">Full-Stack Data Scientist</div>
+          <div class="tl-meta"><span class="co">Data Pilot</span>, Lahore, Pakistan · Sept 2021 – Sept 2022</div>
+          <ul>
+            <li>Delivered <b>5 data science projects for 4 commercial clients</b> spanning forecasting, segmentation, and business intelligence.</li>
+            <li>Built a <b>customer segmentation solution</b> by unifying multi-source consumer data (local store DB, Magento, Shopify), resolving identities via email/phone, and segmenting across 6–7 commercial metrics.</li>
+            <li>Engineered cloud-based ETL/ELT pipelines and managed MLOps for a <b>sales forecasting model</b> achieving under 1.8 MLE.</li>
+            <li>Designed KPI dashboards on <b>Metabase</b> giving clients self-service access to demand trends and operational metrics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot edu">🎓</div>
+        <div class="tl-card">
+          <span class="tl-type edu">Education</span>
+          <div class="tl-role">MSc Data Analytics & Technologies</div>
+          <div class="tl-meta"><span class="co">University of Bolton</span>, UK · Sept 2022 – Sept 2023 · <b style="color:var(--accent3)">Distinction</b></div>
+          <p class="desc">Advanced study in data science, big data, research methods, and solution design. Thesis on enhancing ALPR systems, later published at ICRITO'2025 and recognised as a Top Project.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot work">💼</div>
+        <div class="tl-card">
+          <span class="tl-type work">Employment</span>
+          <div class="tl-role">Software Developer (AI)</div>
+          <div class="tl-meta"><span class="co">Dual-Stream Ltd</span>, Manchester, UK · Apr 2024 – Present</div>
+          <ul>
+            <li>Led development of an <b>AI-powered video analytics solution</b> for one of the UK's top 5 supermarket chains, deploying real-time object detection across <b>1,200+ camera feeds at 400+ retail sites</b>.</li>
+            <li>Implemented YOLO-based detection on <b>500+ NVIDIA Orin edge devices</b>, achieving 90%+ detection accuracy in real time, keeping resource usage under 70% CPU with zero memory failures.</li>
+            <li>Re-architected a synchronous edge inference pipeline into an <b>asynchronous processing model</b>, cutting load/processing time from several minutes down to under 10 seconds per device.</li>
+            <li>Designed a <b>FastAPI backend</b> for low-latency event processing, plus a fleet-wide device monitoring system ensuring 100% uptime on commissioned units.</li>
+            <li>Contributed to scaling a cloud platform into independent microservices, built an embedded IoT device application on Raspberry Pi, and delivered a centralised ETL pipeline unifying 7+ operational data sources into a data warehouse.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-tag">Selected Work</div>
+    <h2 class="sec-title">Projects</h2>
+    <p class="sec-desc">A mix of production systems, research, and independent exploration across computer vision, NLP and data science.</p>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-icon">🎥</div>
+        <div class="proj-meta">DUAL-STREAM · PRODUCTION</div>
+        <h3>AI-Powered Warehouse Video Analytics</h3>
+        <p>Real-time object detection pipeline for a top-5 UK supermarket chain, from camera ingestion through detection to automated alerting — replacing manual surveillance across a nationwide network.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">1,200+</span>cameras</div>
+          <div><span class="m-num">500+</span>edge devices</div>
+          <div><span class="m-num">90%+</span>accuracy</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🚗</div>
+        <div class="proj-meta">MASTER'S THESIS · PUBLISHED</div>
+        <h3>Automatic Duplicate Vehicle Detection</h3>
+        <p>Novel "usual route identification" algorithm enhancing ALPR systems to detect cloned vehicles, with a custom character-wise accuracy metric inspired by the confusion matrix.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">96%</span>vs 88% baseline</div>
+          <div><span class="m-num">145</span>labelled records</div>
+        </div>
+        <a class="proj-link" href="#publications">Read publication details →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🛰️</div>
+        <div class="proj-meta">PERSONAL PROJECT</div>
+        <h3>Satellite Image Segmentation</h3>
+        <p>U-Net semantic segmentation model masking building footprints in satellite imagery for urban analysis, trained on the Village Finder dataset (~3,500 images).</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">91.9%</span>train IoU</div>
+          <div><span class="m-num">86.3%</span>val IoU</div>
+        </div>
+        <a class="proj-link" href="https://github.com/nauman-akram/Satellite-Images-Segmentation" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">⚙️</div>
+        <div class="proj-meta">CURRENT ROLE · SYSTEM ARCHITECTURE</div>
+        <h3>Multi-Tenant Cloud Platform Scaling</h3>
+        <p>Contributed to re-architecting a monolithic cloud platform into independent microservices to support growing customer numbers without performance loss, alongside access control and data segregation work to keep each customer's data secure and isolated.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">Microservices</span>architecture</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">📡</div>
+        <div class="proj-meta">CURRENT ROLE · EMBEDDED SYSTEMS</div>
+        <h3>Embedded IoT Device Application</h3>
+        <p>Built an embedded application on Raspberry Pi using Python and the Kivy UI framework, including GPIO-based hardware control and a software auto-restart mechanism to keep the device resilient through power loss and unexpected shutdowns.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">Raspberry Pi</span>+ Kivy</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🗄️</div>
+        <div class="proj-meta">CURRENT ROLE · DATA ENGINEERING</div>
+        <h3>Centralised ETL Data Warehouse Pipeline</h3>
+        <p>Built an automated daily ETL pipeline consolidating data from multiple varied operational source systems into a central data warehouse, handling different data structures across system versions through dedicated extraction scripts and a unified schema.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">7+</span>source systems</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🥐</div>
+        <div class="proj-meta">CLIENT PROJECT · DATA PILOT</div>
+        <h3>Demand Forecasting for a Bakery Chain</h3>
+        <p>Forecasting model incorporating external variables like weather to predict demand ahead of time, enabling proactive production scheduling to cut wastage and boost sales.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">&lt;1.8</span>MLE</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🛍️</div>
+        <div class="proj-meta">BIG DATA PROJECT</div>
+        <h3>Retail Consumer Insight & Analytics Platform</h3>
+        <p>Full pipeline from MongoDB → PySpark → Scikit-learn → Power BI analysing fashion retail data, comparing 6 regression and 4 classification algorithms for price and rating prediction.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">14,329</span>items</div>
+          <div><span class="m-num">78%</span>classifier accuracy</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">✍️</div>
+        <div class="proj-meta">FINAL YEAR PROJECT</div>
+        <h3>BlogifyUs — NLP Summarisation & Sentiment</h3>
+        <p>Django app that crawls trending Twitter hashtags, generates abstractive summaries via sequence-to-sequence models, and classifies public sentiment automatically.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">NLP</span>pipeline</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🔍</div>
+        <div class="proj-meta">RESEARCH PROJECT</div>
+        <h3>Information Retrieval System (TF-IDF)</h3>
+        <p>Vector space model search engine built from scratch — vocabulary extraction, term/document frequency scoring, and query relevance ranking.</p>
+        <a class="proj-link" href="https://github.com/nauman-akram/IR-system" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🏥</div>
+        <div class="proj-meta">DEEP LEARNING PROJECT</div>
+        <h3>COVID-19 X-Ray Classification</h3>
+        <p>Transfer learning with pre-trained VGG-16 and ResNet-18 to classify chest X-rays, later extended to a multi-label problem distinguishing COVID-19 from overlapping pneumonia symptoms.</p>
+        <a class="proj-link" href="https://github.com/nauman-akram/MSDS19041_COVID19_DLSpring2020" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🤖</div>
+        <div class="proj-meta">HACKATHON · FINALIST</div>
+        <h3>Digital Defence Challenge</h3>
+        <p>Led a team building a network traffic anomaly detection tool (Normal vs. Attack) using the UNSW-NB15 dataset, achieving an F1 score of 91% among 2,000+ APAC participants.</p>
+        <div class="proj-metrics">
+          <div><span class="m-num">91%</span>F1 score</div>
+          <div><span class="m-num">2nd</span>place overall</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="sec-tag">Research</div>
+    <h2 class="sec-title">Publications</h2>
+    <div class="pub-card">
+      <span class="pub-badge">2025</span>
+      <div>
+        <h3>Evaluation and Enhancement of ANPR System</h3>
+        <p>12th International Conference on Reliability, Infocom Technologies and Optimisation — <span class="pub-highlight">ICRITO'2025</span>, Noida NCR, India, 18–19 September 2025.</p>
+        <p>Proposed a novel "usual route identification" algorithm and a character-wise accuracy metric for evaluating Automatic Licence Plate Recognition (ALPR) systems, achieving <span class="pub-highlight">96% evaluation accuracy</span> versus 88% with conventional string matching. Recognised as a Top Project at the University of Bolton.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <h2>Let's work together</h2>
+      <p>Open to KTP Associate roles, AI/ML engineering positions, and PhD opportunities in computer vision, NLP, or applied machine learning.</p>
+      <div class="contact-links">
+        <a href="mailto:butt.nauman.akram@gmail.com">✉️ Email</a>
+        <a href="https://www.linkedin.com/in/nauman-a-butt/" target="_blank">💼 LinkedIn</a>
+        <a href="https://github.com/nauman-akram" target="_blank">💻 GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Nauman Akram Butt · Manchester, UK · Built with care for research and industry alike
+</footer>
+
+</body>
+</html>
