@@ -1,608 +1,620 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Nauman Akram Butt — AI &amp; Data Science</title>
-<meta name="description" content="AI Software Developer specialising in computer vision, edge AI, automation and production machine learning. MSc Data Analytics (Distinction), published at ICRITO'2025.">
+<meta name="description" content="AI Software Developer. Computer vision, edge AI, automation and production machine learning. MSc Data Analytics (Distinction). Published at ICRITO'2025.">
 <style>
-/* ============ THEME ============ */
-:root[data-theme="dark"]{
-  --bg:#041009;
-  --bg-deep:#020a06;
-  --surf:rgba(247,243,232,0.045);
-  --surf2:rgba(247,243,232,0.025);
-  --line:rgba(247,243,232,0.09);
-  --line2:rgba(247,243,232,0.16);
-  --text:#f7f3e8;
-  --muted:#a9b8ac;
-  --dim:#72857a;
-  --green:#4ea87a;
-  --green-deep:#01411C;
-  --gold:#cfae6a;
-  --cream:#f7f3e8;
-  --glow1:#0a4a2a;
-  --glow2:#06301d;
-  --shadow:0 24px 56px rgba(0,0,0,.55);
-  --photo-fade:rgba(4,16,9,.85);
-}
+/* ══════════════ THEME ══════════════ */
 :root[data-theme="light"]{
-  --bg:#faf7ee;
-  --bg-deep:#f3eee0;
-  --surf:rgba(1,65,28,0.035);
-  --surf2:rgba(1,65,28,0.018);
-  --line:rgba(1,65,28,0.12);
-  --line2:rgba(1,65,28,0.22);
-  --text:#06281a;
-  --muted:#4e6356;
-  --dim:#7b8c81;
-  --green:#01411C;
-  --green-deep:#01411C;
-  --gold:#8a6b28;
-  --cream:#faf7ee;
-  --glow1:#bfdcc8;
-  --glow2:#dfe9d5;
-  --shadow:0 20px 46px rgba(1,65,28,.12);
-  --photo-fade:rgba(6,40,26,.78);
+  --paper:#F1EEE4;
+  --paper2:#E8E4D7;
+  --card:#F8F6EF;
+  --ink:#14251B;
+  --ink-soft:#4A5C51;
+  --ink-dim:#8A978E;
+  --rule:#CFC9B8;
+  --rule-soft:#DED9CA;
+  --green:#1F7A4D;
+  --green-bright:#2FA265;
+  --gold:#9A7B24;
+}
+:root[data-theme="dark"]{
+  --paper:#1B241E;
+  --paper2:#141C17;
+  --card:#222D26;
+  --ink:#EDEAE0;
+  --ink-soft:#AFBBB3;
+  --ink-dim:#7C8A82;
+  --rule:#39463E;
+  --rule-soft:#2D3831;
+  --green:#5FD693;
+  --green-bright:#7FE8AB;
+  --gold:#D4B457;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
 body{
-  background:var(--bg);color:var(--text);
-  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  line-height:1.65;overflow-x:hidden;
-  transition:background .5s ease,color .5s ease;
+  background:var(--paper);color:var(--ink);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  line-height:1.6;overflow-x:hidden;
+  transition:background .4s,color .4s;
 }
-::selection{background:var(--green);color:var(--cream);}
+.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
+::selection{background:var(--green);color:var(--paper);}
 
-/* ambient */
-.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;}
-.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.55;transition:background .6s ease;}
-.orb.a{width:620px;height:620px;background:var(--glow1);top:-200px;left:-160px;animation:drift1 24s ease-in-out infinite;}
-.orb.b{width:520px;height:520px;background:var(--glow2);top:14%;right:-170px;animation:drift2 28s ease-in-out infinite;}
-.orb.c{width:580px;height:580px;background:var(--glow1);bottom:-220px;left:32%;animation:drift1 32s ease-in-out infinite reverse;}
-@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(46px,56px)}}
-@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-54px,38px)}}
-.grid-ov{
+/* dot grid */
+.dots{
   position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:68px 68px;
-  mask-image:radial-gradient(ellipse 78% 55% at 50% 0%,#000 18%,transparent 72%);
-  -webkit-mask-image:radial-gradient(ellipse 78% 55% at 50% 0%,#000 18%,transparent 72%);
+  background-image:radial-gradient(var(--rule) 1px,transparent 1px);
+  background-size:26px 26px;
 }
-.wrap{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 30px;position:relative;z-index:2;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:80;transition:all .35s ease;padding:18px 0;}
-nav.scrolled{padding:12px 0;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid var(--line);}
-.nav-in{max-width:1140px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
-.brand{font-weight:700;font-size:1rem;letter-spacing:-.3px;color:var(--text);}
-.nav-right{display:flex;align-items:center;gap:4px;}
-.nav-links{display:flex;gap:2px;list-style:none;align-items:center;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.87rem;font-weight:500;padding:8px 13px;border-radius:9px;transition:.2s;}
-.nav-links a:hover{color:var(--text);background:var(--surf);}
-.nav-cta{background:var(--green)!important;color:var(--cream)!important;font-weight:600!important;margin-left:6px;}
-:root[data-theme="light"] .nav-cta{color:#faf7ee!important;}
-.theme-btn{
-  background:var(--surf);border:1px solid var(--line);color:var(--text);
-  width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:1rem;
-  display:grid;place-items:center;transition:.25s;margin-left:8px;
+/* ══════════════ NAV ══════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  background:var(--paper);border-bottom:1px solid var(--rule);
+  transition:background .4s,border-color .4s;
 }
-.theme-btn:hover{border-color:var(--line2);background:var(--surf2);transform:translateY(-1px);}
-@media(max-width:880px){.nav-links li:not(:last-child){display:none;}}
+.nav-in{max-width:1180px;margin:0 auto;padding:0 30px;height:58px;display:flex;justify-content:space-between;align-items:center;}
+.brand{font-size:.76rem;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;}
+.brand span{color:var(--green);}
+.nav-right{display:flex;align-items:center;gap:2px;}
+.nav-links{display:flex;list-style:none;}
+.nav-links a{
+  color:var(--ink-soft);text-decoration:none;font-size:.7rem;font-weight:600;letter-spacing:1.2px;
+  text-transform:uppercase;padding:9px 13px;transition:.18s;
+}
+.nav-links a:hover{color:var(--green);}
+.tbtn{
+  background:none;border:1px solid var(--rule);color:var(--ink);
+  height:30px;padding:0 11px;cursor:pointer;font-size:.64rem;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;margin-left:12px;transition:.2s;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.tbtn:hover{border-color:var(--green);color:var(--green);}
+@media(max-width:900px){.nav-links li:not(:last-child){display:none;}}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:130px 0 80px;}
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:64px;align-items:center;width:100%;}
-@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:48px;}.hero{padding-top:112px;}}
-.badge{
-  display:inline-flex;align-items:center;gap:9px;font-size:.79rem;font-weight:600;color:var(--green);
-  background:color-mix(in srgb,var(--green) 10%,transparent);
-  border:1px solid color-mix(in srgb,var(--green) 32%,transparent);
-  padding:7px 15px;border-radius:99px;margin-bottom:26px;
+/* ══════════════ HERO ══════════════ */
+.hero{padding:150px 0 90px;border-bottom:1px solid var(--rule);}
+.hgrid{display:grid;grid-template-columns:1.35fr .65fr;gap:56px;align-items:end;}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr;gap:40px;}.hero{padding:120px 0 70px;}}
+
+.status{
+  display:inline-flex;align-items:center;gap:9px;font-size:.66rem;font-weight:700;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--green);border:1px solid var(--green);
+  padding:5px 12px;margin-bottom:34px;
 }
-.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);position:relative;}
-.pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:var(--green);opacity:.35;animation:pulse 2.2s ease-out infinite;}
-@keyframes pulse{0%{transform:scale(.6);opacity:.5}100%{transform:scale(1.8);opacity:0}}
-h1{font-size:clamp(2.6rem,6.2vw,4.5rem);font-weight:800;line-height:1.03;letter-spacing:-2.2px;margin-bottom:22px;}
-h1 .g{color:var(--green);}
-:root[data-theme="dark"] h1 .g{background:linear-gradient(100deg,var(--green),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
-.lede{font-size:clamp(1.02rem,1.7vw,1.18rem);color:var(--muted);max-width:560px;margin-bottom:36px;}
-.lede b{color:var(--text);font-weight:600;}
-.btns{display:flex;gap:13px;flex-wrap:wrap;}
-.btn{padding:13px 26px;border-radius:11px;font-weight:650;font-size:.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.25s;border:1px solid transparent;}
-.btn-p{background:var(--green);color:var(--cream);}
-:root[data-theme="light"] .btn-p{color:#faf7ee;}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 32px color-mix(in srgb,var(--green) 35%,transparent);}
-.btn-g{border-color:var(--line2);color:var(--text);background:var(--surf);}
-.btn-g:hover{border-color:var(--green);transform:translateY(-3px);}
+.blip{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blip 1.6s steps(1) infinite;}
+@keyframes blip{0%,60%{opacity:1}61%,100%{opacity:.15}}
+
+h1{
+  font-size:clamp(2.7rem,7.4vw,5.4rem);font-weight:800;line-height:.94;
+  letter-spacing:-3px;margin-bottom:28px;text-transform:uppercase;
+}
+h1 .l2{color:var(--green);display:block;}
+
+.hmeta{display:flex;gap:34px;flex-wrap:wrap;margin-bottom:30px;padding-top:22px;border-top:1px solid var(--rule);}
+.hm{font-size:.68rem;letter-spacing:1.1px;text-transform:uppercase;}
+.hm .k{color:var(--ink-dim);display:block;margin-bottom:3px;font-size:.6rem;}
+.hm .v{color:var(--ink);font-weight:700;}
+
+.lede{font-size:1.02rem;color:var(--ink-soft);max-width:600px;margin-bottom:34px;}
+.lede b{color:var(--ink);font-weight:650;}
+
+.btns{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--rule);width:fit-content;}
+.btn{
+  padding:13px 24px;font-weight:700;font-size:.68rem;letter-spacing:1.4px;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);border-right:1px solid var(--rule);transition:.2s;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.btn:last-child{border-right:none;}
+.btn:hover{background:var(--green);color:var(--paper);}
+.btn.pri{background:var(--green);color:var(--paper);}
+.btn.pri:hover{background:var(--green-bright);}
 
 /* photo */
-.photo-wrap{position:relative;display:flex;justify-content:center;}
-.photo-frame{
-  position:relative;width:100%;max-width:370px;aspect-ratio:3/4;border-radius:26px;overflow:hidden;
-  border:1px solid var(--line2);background:var(--surf);box-shadow:var(--shadow);
+.pf{position:relative;border:1px solid var(--rule);background:var(--card);aspect-ratio:4/5;overflow:hidden;}
+.pf img{width:100%;height:100%;object-fit:cover;object-position:center 14%;display:block;filter:saturate(.92);}
+.pf-fb{position:absolute;inset:0;display:grid;place-items:center;font-size:2.4rem;font-weight:800;letter-spacing:-1px;color:var(--green);}
+.pf-tag{
+  position:absolute;left:0;bottom:0;right:0;background:var(--paper);border-top:1px solid var(--rule);
+  padding:9px 12px;font-size:.6rem;letter-spacing:1.2px;text-transform:uppercase;
+  display:flex;justify-content:space-between;
 }
-.photo-frame::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,var(--photo-fade) 0%,transparent 52%);
-}
-.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center 16%;display:block;}
-.photo-fallback{
-  position:absolute;inset:0;display:grid;place-items:center;
-  font-size:3.6rem;font-weight:800;letter-spacing:-2px;color:var(--green);
-}
-.photo-caption{position:absolute;left:22px;right:22px;bottom:20px;z-index:3;color:var(--cream);}
-:root[data-theme="light"] .photo-caption{color:#faf7ee;}
-.photo-caption .nm{font-weight:700;font-size:1rem;letter-spacing:-.2px;}
-.photo-caption .rl{font-size:.79rem;color:var(--gold);font-weight:600;}
-:root[data-theme="light"] .photo-caption .rl{color:#e0c887;}
-.glow-ring{position:absolute;inset:-18px;border-radius:36px;z-index:-1;background:linear-gradient(140deg,var(--green),var(--gold));opacity:.2;filter:blur(30px);}
-.chip{
-  position:absolute;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);
-  border:1px solid var(--line2);border-radius:13px;padding:10px 15px;font-size:.77rem;font-weight:600;
-  display:flex;align-items:center;gap:8px;box-shadow:var(--shadow);color:var(--text);
-}
-.chip-1{top:15%;left:-26px;animation:bob 5.5s ease-in-out infinite;}
-.chip-2{bottom:22%;right:-30px;animation:bob 6.5s ease-in-out infinite 1s;}
-@media(max-width:920px){.chip-1{left:-6px}.chip-2{right:-6px}}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+.pf-tag .a{color:var(--green);font-weight:700;}
+.pf-tag .b{color:var(--ink-dim);}
+.corner{position:absolute;width:9px;height:9px;border-color:var(--green);z-index:3;}
+.c-tl{top:7px;left:7px;border-top:2px solid;border-left:2px solid;}
+.c-tr{top:7px;right:7px;border-top:2px solid;border-right:2px solid;}
+.c-bl{bottom:36px;left:7px;border-bottom:2px solid;border-left:2px solid;}
+.c-br{bottom:36px;right:7px;border-bottom:2px solid;border-right:2px solid;}
 
-/* SECTIONS */
-section{padding:110px 0;position:relative;}
-.tag{display:inline-flex;align-items:center;gap:9px;color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:14px;}
-.tag::before{content:"";width:26px;height:1px;background:var(--gold);opacity:.7;}
-h2{font-size:clamp(1.85rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-1.2px;margin-bottom:16px;}
-.sub{color:var(--muted);max-width:620px;margin-bottom:52px;font-size:1.01rem;}
+/* ══════════════ SECTIONS ══════════════ */
+section{padding:86px 0;border-bottom:1px solid var(--rule);}
+.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:14px;}
+.snum{
+  font-size:.68rem;font-weight:700;letter-spacing:1.4px;color:var(--green);
+  border:1px solid var(--green);padding:2px 7px;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-1px;text-transform:uppercase;}
+.sub{color:var(--ink-soft);max-width:600px;margin-bottom:46px;font-size:.96rem;}
 
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
 .rv.in{opacity:1;transform:none;}
 
 /* ABOUT */
-.about{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:start;}
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start;}
 @media(max-width:880px){.about{grid-template-columns:1fr;}}
-.about p{color:var(--muted);margin-bottom:17px;}
-.about b{color:var(--text);font-weight:600;}
-.skills{background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:28px;}
-.skills h4{font-size:.73rem;text-transform:uppercase;letter-spacing:1.6px;color:var(--green);margin-bottom:13px;font-weight:700;}
-.skills h4:not(:first-child){margin-top:24px;}
-.tags{display:flex;flex-wrap:wrap;gap:7px;}
-.t{background:var(--surf2);border:1px solid var(--line);color:var(--text);font-size:.76rem;padding:5px 11px;border-radius:8px;transition:.2s;}
-.t:hover{background:color-mix(in srgb,var(--green) 14%,transparent);border-color:var(--green);color:var(--green);}
+.about p{color:var(--ink-soft);margin-bottom:16px;font-size:.96rem;}
+.about b{color:var(--ink);font-weight:650;}
+.skb{border:1px solid var(--rule);background:var(--card);}
+.skrow{border-bottom:1px solid var(--rule-soft);padding:17px 20px;}
+.skrow:last-child{border-bottom:none;}
+.skrow h4{
+  font-size:.6rem;text-transform:uppercase;letter-spacing:1.6px;color:var(--green);margin-bottom:10px;font-weight:700;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.tags{display:flex;flex-wrap:wrap;gap:6px;}
+.t{
+  border:1px solid var(--rule);color:var(--ink-soft);font-size:.68rem;padding:3px 8px;transition:.18s;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.t:hover{border-color:var(--green);color:var(--green);}
 
-/* TIMELINE */
-.legend{display:flex;gap:20px;margin-bottom:40px;flex-wrap:wrap;}
-.lg{display:flex;align-items:center;gap:8px;font-size:.81rem;color:var(--muted);}
-.lg i{width:9px;height:9px;border-radius:50%;display:block;}
-.tl{position:relative;padding-left:40px;}
-.tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,transparent,var(--line2) 8%,var(--line2) 92%,transparent);}
-.ti{position:relative;margin-bottom:26px;}
+/* ══════════════ TIMELINE ══════════════ */
+.legend{display:flex;gap:22px;margin-bottom:34px;flex-wrap:wrap;}
+.lg{display:flex;align-items:center;gap:7px;font-size:.62rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-dim);}
+.lg i{width:8px;height:8px;display:block;}
+
+.tl{position:relative;padding-left:34px;}
+.tl::before{content:"";position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:var(--rule);}
+.ti{position:relative;margin-bottom:16px;}
 .ti:last-child{margin-bottom:0;}
-.td{position:absolute;left:-40px;top:24px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--dim);display:grid;place-items:center;font-size:.58rem;z-index:2;transition:.3s;}
-.ti:hover .td{transform:scale(1.2);}
-.td.edu{border-color:var(--gold);box-shadow:0 0 0 5px color-mix(in srgb,var(--gold) 12%,transparent);}
-.td.work{border-color:var(--green);box-shadow:0 0 0 5px color-mix(in srgb,var(--green) 14%,transparent);}
-.td.free{border-color:var(--muted);box-shadow:0 0 0 5px color-mix(in srgb,var(--muted) 12%,transparent);}
-.tc{background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:24px 26px;transition:.3s;}
-.tc:hover{border-color:var(--line2);transform:translateX(5px);}
-.ty{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:11px;}
-.ty.edu{background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 32%,transparent);}
-.ty.work{background:color-mix(in srgb,var(--green) 14%,transparent);color:var(--green);border:1px solid color-mix(in srgb,var(--green) 32%,transparent);}
-.ty.free{background:var(--surf2);color:var(--muted);border:1px solid var(--line2);}
-.tr{font-size:1.13rem;font-weight:700;letter-spacing:-.4px;}
-.tm{color:var(--dim);font-size:.83rem;margin-bottom:13px;}
-.tm .co{color:var(--muted);font-weight:600;}
-.tc ul{padding-left:19px;color:var(--muted);font-size:.91rem;}
-.tc li{margin-bottom:7px;}
-.tc li::marker{color:var(--dim);}
-.tc li b,.tc p b{color:var(--text);font-weight:600;}
-.tc p{color:var(--muted);font-size:.91rem;}
-.dist{color:var(--green);font-weight:700;}
+.td{position:absolute;left:-34px;top:20px;width:11px;height:11px;background:var(--paper);border:2px solid var(--ink-dim);z-index:2;}
+.td.edu{border-color:var(--gold);}
+.td.work{border-color:var(--green);background:var(--green);}
+.td.free{border-color:var(--ink-dim);}
+.td.award{border-color:var(--gold);background:var(--gold);transform:rotate(45deg);}
 
-/* PROJECTS */
-.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.tc{border:1px solid var(--rule);background:var(--card);padding:20px 22px;transition:.22s;}
+.tc:hover{border-color:var(--green);}
+.thead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:9px;}
+.ty{
+  font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border:1px solid;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.ty.edu{color:var(--gold);border-color:var(--gold);}
+.ty.work{color:var(--green);border-color:var(--green);}
+.ty.free{color:var(--ink-dim);border-color:var(--rule);}
+.ty.award{color:var(--gold);border-color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,transparent);}
+.tdate{font-size:.63rem;letter-spacing:1.1px;color:var(--ink-dim);text-transform:uppercase;font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
+.tr{font-size:1.04rem;font-weight:750;letter-spacing:-.3px;margin-bottom:2px;}
+.tco{color:var(--ink-soft);font-size:.82rem;margin-bottom:11px;}
+.tc ul{padding-left:17px;color:var(--ink-soft);font-size:.89rem;}
+.tc li{margin-bottom:6px;}
+.tc li::marker{color:var(--green);}
+.tc li b,.tc p b{color:var(--ink);font-weight:650;}
+.tc p{color:var(--ink-soft);font-size:.89rem;}
+
+/* award = compact */
+.tc.aw{padding:15px 20px;background:transparent;}
+.tc.aw .tr{font-size:.94rem;}
+
+/* ══════════════ PROJECTS ══════════════ */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:-1px;border-top:1px solid var(--rule);border-left:1px solid var(--rule);}
 @media(max-width:980px){.pg{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:640px){.pg{grid-template-columns:1fr;}}
 .pc{
-  background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:25px;
-  display:flex;flex-direction:column;transition:.32s cubic-bezier(.2,.7,.3,1);position:relative;overflow:hidden;
+  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:24px 22px;display:flex;flex-direction:column;transition:.22s;position:relative;background:transparent;
 }
-.pc::before{content:"";position:absolute;inset:0;opacity:0;transition:.32s;
-  background:radial-gradient(480px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--green) 14%,transparent),transparent 42%);}
-.pc:hover{transform:translateY(-6px);border-color:var(--green);box-shadow:var(--shadow);}
-.pc:hover::before{opacity:1;}
-.pi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:1.18rem;margin-bottom:15px;background:var(--surf2);border:1px solid var(--line);}
-.pm{color:var(--green);font-size:.69rem;font-weight:700;letter-spacing:1.2px;margin-bottom:8px;text-transform:uppercase;}
-.pc h3{font-size:1.03rem;margin-bottom:9px;letter-spacing:-.3px;line-height:1.35;}
-.pc p{color:var(--muted);font-size:.87rem;flex-grow:1;margin-bottom:15px;}
-.pmet{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:13px;}
-.pmet div{font-size:.71rem;color:var(--dim);}
-.pmet .mn{color:var(--gold);font-weight:750;display:block;font-size:.94rem;letter-spacing:-.3px;}
-.pl{color:var(--green);text-decoration:none;font-size:.82rem;font-weight:650;display:inline-flex;align-items:center;gap:5px;transition:.2s;}
-.pl:hover{gap:9px;color:var(--gold);}
+.pc:hover{background:var(--card);}
+.pidx{
+  font-size:.6rem;letter-spacing:1.4px;color:var(--ink-dim);margin-bottom:14px;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+  display:flex;justify-content:space-between;
+}
+.pidx .cat{color:var(--green);font-weight:700;}
+.pc h3{font-size:.99rem;margin-bottom:9px;letter-spacing:-.2px;line-height:1.3;font-weight:750;}
+.pc p{color:var(--ink-soft);font-size:.86rem;flex-grow:1;margin-bottom:14px;}
+.pstack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+.ps{font-size:.6rem;letter-spacing:.8px;color:var(--ink-dim);border:1px solid var(--rule-soft);padding:2px 6px;font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
+.pl{
+  color:var(--green);text-decoration:none;font-size:.64rem;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:6px;transition:.2s;font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.pl:hover{gap:10px;}
 
-/* PUBLICATION */
-.pub{background:var(--surf);border:1px solid color-mix(in srgb,var(--gold) 26%,transparent);border-radius:22px;padding:34px;display:flex;gap:24px;align-items:flex-start;}
-@media(max-width:640px){.pub{flex-direction:column;gap:16px;}}
-.pb{background:color-mix(in srgb,var(--gold) 16%,transparent);border:1px solid color-mix(in srgb,var(--gold) 34%,transparent);color:var(--gold);font-size:.69rem;font-weight:700;padding:5px 12px;border-radius:7px;white-space:nowrap;letter-spacing:1px;}
-.pub h3{font-size:1.2rem;margin-bottom:10px;letter-spacing:-.4px;}
-.pub p{color:var(--muted);font-size:.92rem;margin-bottom:8px;}
-.pub .hi{color:var(--text);font-weight:650;}
+/* ══════════════ RESEARCH ══════════════ */
+.pub{border:1px solid var(--green);padding:28px;background:var(--card);}
+.publ{font-size:.62rem;letter-spacing:1.6px;color:var(--green);font-weight:700;margin-bottom:12px;font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
+.pub h3{font-size:1.14rem;margin-bottom:10px;letter-spacing:-.3px;}
+.pub p{color:var(--ink-soft);font-size:.91rem;margin-bottom:8px;}
+.pub .hi{color:var(--ink);font-weight:650;}
 
-/* CONTACT */
-.cbox{background:var(--surf);border:1px solid var(--line2);border-radius:28px;padding:64px 44px;text-align:center;position:relative;overflow:hidden;}
-.cbox::before{content:"";position:absolute;top:-60%;left:50%;transform:translateX(-50%);width:520px;height:520px;background:var(--green);opacity:.09;filter:blur(90px);border-radius:50%;}
+/* ══════════════ CONTACT ══════════════ */
+.cbox{text-align:center;padding:26px 0;}
 .cbox h2{margin-bottom:14px;}
-.cbox p{color:var(--muted);max-width:500px;margin:0 auto 34px;}
-.clinks{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;position:relative;}
-.clinks a{display:flex;align-items:center;gap:9px;background:var(--surf2);border:1px solid var(--line2);color:var(--text);text-decoration:none;padding:13px 22px;border-radius:12px;font-size:.89rem;font-weight:650;transition:.25s;}
-.clinks a:hover{transform:translateY(-3px);border-color:var(--green);background:color-mix(in srgb,var(--green) 10%,transparent);}
+.cbox p{color:var(--ink-soft);max-width:480px;margin:0 auto 30px;font-size:.96rem;}
+.clinks{display:flex;justify-content:center;flex-wrap:wrap;border:1px solid var(--rule);width:fit-content;margin:0 auto;}
+.clinks a{
+  padding:14px 26px;color:var(--ink);text-decoration:none;font-size:.68rem;font-weight:700;letter-spacing:1.4px;
+  text-transform:uppercase;border-right:1px solid var(--rule);transition:.2s;font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.clinks a:last-child{border-right:none;}
+.clinks a:hover{background:var(--green);color:var(--paper);}
 
-footer{padding:44px 0;text-align:center;color:var(--dim);font-size:.82rem;border-top:1px solid var(--line);}
+/* ══════════════ FOOTER ══════════════ */
+footer{padding:26px 0;}
+.fin{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  font-size:.63rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-dim);
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
+.views{display:flex;align-items:center;gap:8px;}
+.views b{color:var(--green);font-weight:700;}
 </style>
 </head>
 <body>
+<div class="dots"></div>
 
-<div class="ambient"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
-<div class="grid-ov"></div>
-
-<nav id="nav">
+<nav>
   <div class="nav-in">
-    <div class="brand">Nauman Akram Butt</div>
+    <div class="brand mono">NAUMAN AKRAM BUTT <span>/ AI</span></div>
     <div class="nav-right">
-      <ul class="nav-links">
+      <ul class="nav-links mono">
         <li><a href="#about">About</a></li>
         <li><a href="#journey">Journey</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects">Work</a></li>
         <li><a href="#research">Research</a></li>
-        <li><a class="nav-cta" href="#contact">Get in touch</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+      <button class="tbtn" id="tbtn">LIGHT</button>
     </div>
   </div>
 </nav>
 
 <div class="wrap">
 
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="hero-grid">
-      <div>
-        <div class="badge"><span class="pulse"></span> Open to new opportunities</div>
-        <h1>Nauman Akram Butt<br><span class="g">AI &amp; Data Science</span></h1>
-        <p class="lede">
-          I build <b>computer vision, edge AI and automation systems</b> that run in production — from real-time
-          object detection on embedded hardware to published research on intelligent recognition systems.
-          <b>MSc Data Analytics (Distinction)</b> · Published at ICRITO'2025.
-        </p>
-        <div class="btns">
-          <a class="btn btn-p" href="#journey">Explore my journey</a>
-          <a class="btn btn-g" href="https://github.com/nauman-akram" target="_blank" rel="noopener">GitHub ↗</a>
-          <a class="btn btn-g" href="https://www.linkedin.com/in/nauman-a-butt/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </div>
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top" style="border-bottom:1px solid var(--rule)">
+  <div class="hgrid">
+    <div>
+      <div class="status mono"><span class="blip"></span> Open to new opportunities</div>
+      <h1>Nauman<br>Akram Butt<span class="l2">AI &amp; Data Science</span></h1>
+      <p class="lede">I build <b>computer vision, edge AI and automation systems</b> that run in production — from real-time object detection on embedded hardware to published research on intelligent recognition systems.</p>
+      <div class="hmeta mono">
+        <div class="hm"><span class="k">Based in</span><span class="v">Manchester, UK</span></div>
+        <div class="hm"><span class="k">Focus</span><span class="v">Vision · Edge AI · NLP</span></div>
+        <div class="hm"><span class="k">Education</span><span class="v">MSc — Distinction</span></div>
+        <div class="hm"><span class="k">Published</span><span class="v">ICRITO'2025</span></div>
       </div>
-
-      <div class="photo-wrap">
-        <div class="photo-frame">
-          <div class="glow-ring"></div>
-          <div class="photo-fallback" id="fallback">NAB</div>
-          <img src="profile.jpg" alt="Nauman Akram Butt"
-               onerror="this.style.display='none'"
-               onload="document.getElementById('fallback').style.display='none'">
-          <div class="photo-caption">
-            <div class="nm">Nauman Akram Butt</div>
-            <div class="rl">AI Software Developer · Manchester, UK</div>
-          </div>
-        </div>
-        <div class="chip chip-1">🧠 Computer Vision</div>
-        <div class="chip chip-2">⚡ Edge AI &amp; Automation</div>
+      <div class="btns">
+        <a class="btn pri" href="#journey">Journey</a>
+        <a class="btn" href="https://github.com/nauman-akram" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/nauman-a-butt/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about">
+    <div class="pf">
+      <span class="corner c-tl"></span><span class="corner c-tr"></span>
+      <span class="corner c-bl"></span><span class="corner c-br"></span>
+      <div class="pf-fb" id="fb">NAB</div>
+      <img src="profile.jpg" alt="Nauman Akram Butt"
+           onerror="this.style.display='none'"
+           onload="document.getElementById('fb').style.display='none'">
+      <div class="pf-tag mono"><span class="a">AI Software Developer</span><span class="b">MCR / UK</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="rv">
+    <div class="shead"><span class="snum">01</span><h2>Profile</h2></div>
+    <p class="sub">Three years of professional experience, six since first working in data science — across commercial delivery and academic research.</p>
+  </div>
+  <div class="about">
     <div class="rv">
-      <div class="tag">Who I am</div>
-      <h2>Bridging research and production AI</h2>
+      <p>I'm an <b>AI Software Developer</b> working across computer vision, edge AI, NLP and automation. My work sits where research meets production: taking approaches that exist in papers and making them run reliably on real hardware, at scale, for real businesses.</p>
+      <p>Currently I lead development of a real-time <b>video analytics platform</b> for a major UK supermarket chain, running object detection on <b>NVIDIA Orin edge devices</b> deployed across retail sites nationwide — optimising models to work within tight memory and compute constraints.</p>
+      <p>Previously, as a <b>Data Scientist</b>, I delivered projects for commercial customers: unifying fragmented multi-source consumer data, building forecasting systems, and designing KPI dashboards that directly informed business decisions. Before that I spent two years freelancing in computer vision and NLP for international clients.</p>
+      <p>My <b>Master's thesis</b> on enhancing Automatic Licence Plate Recognition was published at <b>ICRITO'2025</b> and recognised as a Top Project at the University of Bolton.</p>
+      <p>I'm currently deepening my work in <b>Generative AI, LLMs and RAG systems</b> through NVIDIA and Udemy coursework, and building a RAG-based retrieval system independently.</p>
     </div>
-    <div class="about">
-      <div class="rv">
-        <p>I'm an <b>AI Software Developer</b> with over three years of professional experience — and six years since first working in data science — spanning computer vision, edge AI, NLP, and automation, across both commercial delivery and academic research.</p>
-        <p>Currently, I lead development of a real-time <b>AI-powered video analytics platform</b> for a major UK supermarket chain, running object detection on <b>NVIDIA Orin edge devices</b> deployed across retail sites nationwide.</p>
-        <p>Previously, as a <b>Data Scientist</b>, I delivered projects for commercial customers — unifying fragmented multi-source consumer data, building forecasting systems, and designing KPI dashboards that directly informed business decisions. Before that, I spent two years freelancing across computer vision and NLP for international clients.</p>
-        <p>My <b>Master's thesis</b> on enhancing Automatic Licence Plate Recognition (ALPR) systems was published at the <b>12th International Conference on Reliability, Infocom Technologies and Optimisation (ICRITO'2025)</b>, and recognised as a Top Project at the University of Bolton.</p>
-        <p>I'm actively deepening my expertise in <b>Generative AI, LLMs and RAG systems</b> through NVIDIA and Udemy coursework, and building a RAG-based retrieval system as an independent project.</p>
-      </div>
-      <div class="skills rv">
-        <h4>Computer Vision &amp; Edge AI</h4>
-        <div class="tags">
-          <span class="t">YOLO</span><span class="t">U-Net</span><span class="t">OpenCV</span>
-          <span class="t">Semantic Segmentation</span><span class="t">NVIDIA Orin</span><span class="t">Raspberry Pi</span><span class="t">Transfer Learning</span>
-        </div>
-        <h4>NLP &amp; Generative AI</h4>
-        <div class="tags">
-          <span class="t">TF-IDF Retrieval</span><span class="t">Sentiment Analysis</span>
-          <span class="t">RAG</span><span class="t">LLMs</span><span class="t">Summarisation</span><span class="t">Seq2Seq</span>
-        </div>
-        <h4>Languages &amp; Frameworks</h4>
-        <div class="tags">
-          <span class="t">Python</span><span class="t">C#</span><span class="t">SQL</span><span class="t">R</span>
-          <span class="t">TensorFlow</span><span class="t">PyTorch</span><span class="t">Scikit-learn</span><span class="t">FastAPI</span><span class="t">PySpark</span>
-        </div>
-        <h4>Architecture &amp; Cloud</h4>
-        <div class="tags">
-          <span class="t">Microservices</span><span class="t">Azure</span><span class="t">AWS</span><span class="t">MongoDB</span>
-          <span class="t">Power BI</span><span class="t">Metabase</span><span class="t">ETL/ELT</span><span class="t">Databricks</span>
-        </div>
-      </div>
+    <div class="skb rv">
+      <div class="skrow"><h4>Vision &amp; Edge AI</h4><div class="tags">
+        <span class="t">YOLO</span><span class="t">U-Net</span><span class="t">OpenCV</span><span class="t">Segmentation</span><span class="t">NVIDIA Orin</span><span class="t">Raspberry Pi</span><span class="t">Transfer Learning</span></div></div>
+      <div class="skrow"><h4>NLP &amp; Generative AI</h4><div class="tags">
+        <span class="t">RAG</span><span class="t">LLMs</span><span class="t">TF-IDF</span><span class="t">Sentiment</span><span class="t">Seq2Seq</span><span class="t">Summarisation</span></div></div>
+      <div class="skrow"><h4>Languages</h4><div class="tags">
+        <span class="t">Python</span><span class="t">C#</span><span class="t">SQL</span><span class="t">R</span><span class="t">JavaScript</span></div></div>
+      <div class="skrow"><h4>Frameworks</h4><div class="tags">
+        <span class="t">TensorFlow</span><span class="t">PyTorch</span><span class="t">Scikit-learn</span><span class="t">FastAPI</span><span class="t">PySpark</span><span class="t">Django</span></div></div>
+      <div class="skrow"><h4>Architecture &amp; Cloud</h4><div class="tags">
+        <span class="t">Microservices</span><span class="t">Azure</span><span class="t">AWS</span><span class="t">MongoDB</span><span class="t">ETL/ELT</span><span class="t">Power BI</span><span class="t">Metabase</span></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- JOURNEY -->
-  <section id="journey">
-    <div class="rv">
-      <div class="tag">Career &amp; education</div>
-      <h2>My journey</h2>
-      <p class="sub">From undergraduate studies through freelancing, industry roles, and a Master's with Distinction, to production AI today.</p>
-      <div class="legend">
-        <div class="lg"><i style="background:var(--gold)"></i> Education</div>
-        <div class="lg"><i style="background:var(--green)"></i> Employment</div>
-        <div class="lg"><i style="background:var(--muted)"></i> Freelance</div>
+<!-- ═══ JOURNEY ═══ -->
+<section id="journey">
+  <div class="rv">
+    <div class="shead"><span class="snum">02</span><h2>Journey</h2></div>
+    <p class="sub">Education, employment, freelance work and recognition — in sequence.</p>
+    <div class="legend mono">
+      <div class="lg"><i style="background:var(--gold)"></i> Education</div>
+      <div class="lg"><i style="background:var(--green)"></i> Employment</div>
+      <div class="lg"><i style="background:var(--ink-dim)"></i> Freelance</div>
+      <div class="lg"><i style="background:var(--gold);transform:rotate(45deg)"></i> Award</div>
+    </div>
+  </div>
+
+  <div class="tl">
+
+    <div class="ti rv"><div class="td edu"></div>
+      <div class="tc">
+        <div class="thead"><span class="ty edu">Education</span><span class="tdate">Aug 2014 — Jun 2018</span></div>
+        <div class="tr">BSc Computer Science</div>
+        <div class="tco">FAST — National University of Computer &amp; Emerging Sciences, Pakistan</div>
+        <p>Coursework spanning <b>software architecture</b>, algorithms, object-oriented design, machine learning and data science — the systems engineering grounding I now apply to <b>automation</b>, <b>edge devices</b> and production AI. Final year project: <b>BlogifyUs</b>, an NLP trend summarisation platform.</p>
       </div>
     </div>
 
-    <div class="tl">
-
-      <div class="ti rv">
-        <div class="td edu">🎓</div>
-        <div class="tc">
-          <span class="ty edu">Education</span>
-          <div class="tr">BSc Computer Science</div>
-          <div class="tm"><span class="co">FAST — National University of Computer &amp; Emerging Sciences</span>, Pakistan · Aug 2014 – Jun 2018</div>
-          <p>Foundational coursework spanning <b>software architecture</b>, algorithms, object-oriented design, machine learning, and data science — building the systems engineering grounding I now apply to <b>automation</b>, <b>edge devices</b>, and production AI. Final year project: <b>BlogifyUs</b>, an NLP-driven trend summarisation platform.</p>
-        </div>
-      </div>
-
-      <div class="ti rv">
-        <div class="td free">🌐</div>
-        <div class="tc">
-          <span class="ty free">Freelance</span>
-          <div class="tr">Freelance Data Scientist</div>
-          <div class="tm"><span class="co">Upwork &amp; Fiverr</span> · 2019 – 2021</div>
-          <ul>
-            <li>Collaborated with clients to design and develop customised data science projects, including <b>dashboarding</b> and early machine learning model experimentation.</li>
-            <li>Delivered independent projects across <b>computer vision and NLP</b> for international clients, including exploratory analysis, data visualisation, and web scraping.</li>
-            <li>Trained custom object detection models and applied <b>transfer learning</b>, fine-tuning pre-trained architectures for client-specific use cases.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="ti rv">
-        <div class="td work">💼</div>
-        <div class="tc">
-          <span class="ty work">Employment</span>
-          <div class="tr">Full-Stack Data Scientist</div>
-          <div class="tm"><span class="co">Data Pilot</span>, Lahore, Pakistan · Sept 2021 – Sept 2022</div>
-          <ul>
-            <li>Delivered <b>several data science projects for various customers</b>, spanning forecasting, segmentation, and business intelligence.</li>
-            <li>Built a <b>customer segmentation solution</b> by unifying multi-source consumer data (local store database, Magento, Shopify), resolving identities via email and phone, then segmenting across defined commercial metrics.</li>
-            <li>Engineered cloud-based <b>ETL/ELT pipelines</b> and managed MLOps for a sales forecasting model.</li>
-            <li>Designed KPI dashboards on <b>Metabase</b>, giving clients self-service access to demand trends and operational metrics.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="ti rv">
-        <div class="td edu">🎓</div>
-        <div class="tc">
-          <span class="ty edu">Education</span>
-          <div class="tr">MSc Data Analytics &amp; Technologies</div>
-          <div class="tm"><span class="co">University of Bolton</span>, UK · Sept 2022 – Sept 2023 · <span class="dist">Distinction</span></div>
-          <p>Advanced study in data science, big data, research methods, and solution design. Thesis on enhancing ALPR systems, later published at <b>ICRITO'2025</b> and recognised as a Top Project.</p>
-        </div>
-      </div>
-
-      <div class="ti rv">
-        <div class="td work">💼</div>
-        <div class="tc">
-          <span class="ty work">Employment</span>
-          <div class="tr">Software Developer (AI)</div>
-          <div class="tm"><span class="co">Dual-Stream Ltd</span>, Manchester, UK · Apr 2024 – Present</div>
-          <ul>
-            <li>Led development of an <b>AI-powered video analytics solution</b> for a major UK supermarket chain, deploying real-time object detection across camera feeds at retail sites nationwide.</li>
-            <li>Implemented YOLO-based object detection on <b>NVIDIA Orin edge devices</b>, delivering reliable real-time inference while optimising models to run within tight memory and compute constraints.</li>
-            <li>Re-architected a synchronous edge inference pipeline into an <b>asynchronous processing model</b>, dramatically reducing load and processing time per device.</li>
-            <li>Designed a <b>FastAPI backend</b> for low-latency event processing, alongside a fleet-wide device monitoring system enabling remote updates and continuous uptime across deployed hardware.</li>
-            <li>Contributed to scaling a cloud platform into independent <b>microservices</b>, built an <b>embedded IoT application</b> on Raspberry Pi with GPIO hardware control, and delivered a centralised ETL pipeline unifying varied operational systems into a data warehouse.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="rv">
-      <div class="tag">Selected work</div>
-      <h2>Projects</h2>
-      <p class="sub">Production systems, published research, and independent exploration across computer vision, edge AI, NLP and data science.</p>
-    </div>
-    <div class="pg">
-
-      <div class="pc rv"><div class="pi">🎥</div>
-        <div class="pm">Dual-Stream · Production</div>
-        <h3>AI-Powered Warehouse Video Analytics</h3>
-        <p>Real-time object detection pipeline for a major UK supermarket chain — from camera ingestion through detection to automated alerting, replacing manual surveillance across a nationwide network.</p>
-        <div class="pmet"><div><span class="mn">Edge AI</span>NVIDIA Orin</div><div><span class="mn">Real-time</span>inference</div></div>
-      </div>
-
-      <div class="pc rv"><div class="pi">🚗</div>
-        <div class="pm">Master's thesis · Published</div>
-        <h3>Automatic Duplicate Vehicle Detection</h3>
-        <p>Novel "usual route identification" algorithm enhancing ALPR systems to detect cloned vehicles, with a custom character-wise accuracy metric inspired by the confusion matrix.</p>
-        <div class="pmet"><div><span class="mn">96%</span>vs 88% baseline</div></div>
-        <a class="pl" href="#research">Publication details →</a>
-      </div>
-
-      <div class="pc rv"><div class="pi">🛰️</div>
-        <div class="pm">Personal project</div>
-        <h3>Satellite Image Segmentation</h3>
-        <p>U-Net semantic segmentation model masking building footprints in satellite imagery for urban analysis, trained on the Village Finder dataset.</p>
-        <div class="pmet"><div><span class="mn">86.3%</span>validation IoU</div></div>
-        <a class="pl" href="https://github.com/nauman-akram/Satellite-Images-Segmentation" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
-
-      <div class="pc rv"><div class="pi">⚙️</div>
-        <div class="pm">Current role · Architecture</div>
-        <h3>Multi-Tenant Cloud Platform Scaling</h3>
-        <p>Contributed to re-architecting a monolithic cloud platform into independent microservices to support growing customer numbers, alongside access control and data segregation keeping each customer's data isolated.</p>
-        <div class="pmet"><div><span class="mn">Microservices</span>architecture</div></div>
-      </div>
-
-      <div class="pc rv"><div class="pi">📡</div>
-        <div class="pm">Current role · Embedded</div>
-        <h3>Embedded IoT Device Application</h3>
-        <p>Embedded application on Raspberry Pi using Python and the Kivy UI framework, with GPIO hardware control and a software auto-restart mechanism for resilience through power loss and unexpected shutdowns.</p>
-        <div class="pmet"><div><span class="mn">GPIO</span>hardware control</div></div>
-      </div>
-
-      <div class="pc rv"><div class="pi">🗄️</div>
-        <div class="pm">Current role · Data engineering</div>
-        <h3>Centralised ETL Data Warehouse</h3>
-        <p>Automated daily ETL pipeline consolidating varied operational source systems into a central warehouse, handling differing data structures across system versions via dedicated extraction scripts and a unified schema.</p>
-        <div class="pmet"><div><span class="mn">Automated</span>daily pipeline</div></div>
-      </div>
-
-      <div class="pc rv"><div class="pi">🥐</div>
-        <div class="pm">Client project · Data Pilot</div>
-        <h3>Demand Forecasting for a Bakery Chain</h3>
-        <p>Forecasting model incorporating external variables such as weather to predict demand ahead of time, enabling proactive production scheduling that cut wastage while protecting sales.</p>
-        <div class="pmet"><div><span class="mn">Time series</span>forecasting</div></div>
-      </div>
-
-      <div class="pc rv"><div class="pi">🛍️</div>
-        <div class="pm">Big data project</div>
-        <h3>Retail Consumer Insight Platform</h3>
-        <p>Full pipeline from MongoDB through PySpark and Scikit-learn to Power BI, analysing fashion retail data and comparing multiple regression and classification algorithms for price and rating prediction.</p>
-        <div class="pmet"><div><span class="mn">PySpark</span>big data</div></div>
-      </div>
-
-      <div class="pc rv"><div class="pi">✍️</div>
-        <div class="pm">Final year project</div>
-        <h3>BlogifyUs — NLP Summarisation</h3>
-        <p>Django application that crawls trending Twitter hashtags, generates abstractive summaries via sequence-to-sequence models, and classifies public sentiment automatically.</p>
-        <div class="pmet"><div><span class="mn">Seq2Seq</span>NLP pipeline</div></div>
-      </div>
-
-      <div class="pc rv"><div class="pi">🔍</div>
-        <div class="pm">Research project</div>
-        <h3>Information Retrieval System</h3>
-        <p>Vector space model search engine built from scratch — vocabulary extraction, term and document frequency scoring, TF-IDF weighting, and query relevance ranking.</p>
-        <a class="pl" href="https://github.com/nauman-akram/IR-system" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
-
-      <div class="pc rv"><div class="pi">🏥</div>
-        <div class="pm">Deep learning project</div>
-        <h3>COVID-19 X-Ray Classification</h3>
-        <p>Transfer learning with pre-trained VGG-16 and ResNet-18 to classify chest X-rays, extended to a multi-label problem distinguishing COVID-19 from overlapping pneumonia symptoms.</p>
-        <a class="pl" href="https://github.com/nauman-akram/MSDS19041_COVID19_DLSpring2020" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
-
-      <div class="pc rv"><div class="pi">🛡️</div>
-        <div class="pm">Hackathon · Finalist</div>
-        <h3>Digital Defence Challenge</h3>
-        <p>Led a team building a network traffic anomaly detection tool (Normal vs. Attack) on the UNSW-NB15 dataset, competing among participants across the APAC region.</p>
-        <div class="pmet"><div><span class="mn">Anomaly</span>detection</div></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- RESEARCH -->
-  <section id="research">
-    <div class="rv">
-      <div class="tag">Research</div>
-      <h2>Publications</h2>
-    </div>
-    <div class="pub rv">
-      <span class="pb">2025</span>
-      <div>
-        <h3>Evaluation and Enhancement of ANPR System</h3>
-        <p>12th International Conference on Reliability, Infocom Technologies and Optimisation — <span class="hi">ICRITO'2025</span>, Noida NCR, India · 18–19 September 2025.</p>
-        <p>Proposed a novel "usual route identification" algorithm and a character-wise accuracy metric for evaluating Automatic Licence Plate Recognition systems, achieving <span class="hi">96% evaluation accuracy</span> versus 88% with conventional string matching. Recognised as a Top Project at the University of Bolton.</p>
+    <div class="ti rv"><div class="td free"></div>
+      <div class="tc">
+        <div class="thead"><span class="ty free">Freelance</span><span class="tdate">2019 — 2021</span></div>
+        <div class="tr">Freelance Data Scientist</div>
+        <div class="tco">Upwork &amp; Fiverr · International clients</div>
+        <ul>
+          <li>Collaborated with clients to design and develop customised data science projects, including <b>dashboarding</b> and early machine learning model experimentation.</li>
+          <li>Delivered projects across <b>computer vision and NLP</b>, including exploratory analysis, data visualisation and web scraping.</li>
+          <li>Trained custom object detection models and applied <b>transfer learning</b>, fine-tuning pre-trained architectures for client-specific use cases.</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="cbox rv">
-      <h2>Let's work together</h2>
-      <p>Open to KTP Associate roles, AI/ML engineering positions, and PhD opportunities in computer vision, edge AI, automation, or applied machine learning.</p>
-      <div class="clinks">
-        <a href="mailto:butt.nauman.akram@gmail.com">✉️ Email</a>
-        <a href="https://www.linkedin.com/in/nauman-a-butt/" target="_blank" rel="noopener">💼 LinkedIn</a>
-        <a href="https://github.com/nauman-akram" target="_blank" rel="noopener">💻 GitHub</a>
+    <div class="ti rv"><div class="td award"></div>
+      <div class="tc aw">
+        <div class="thead"><span class="ty award">Award</span><span class="tdate">Dec 2020</span></div>
+        <div class="tr">Finalist — International Digital Defence Hackathon</div>
+        <div class="tco">Hackmakers · APAC region</div>
+        <p>Led a team building a <b>network traffic anomaly detection</b> tool inspired by IoT device-to-server communication patterns, using the UNSW-NB15 dataset. Reframed a nine-category attack problem into binary anomaly detection (Normal vs. Attack), handling preprocessing, feature selection and model evaluation on <b>Oracle Analytics Cloud</b>. Placed as finalists among participants across the region.</p>
       </div>
     </div>
-  </section>
+
+    <div class="ti rv"><div class="td work"></div>
+      <div class="tc">
+        <div class="thead"><span class="ty work">Employment</span><span class="tdate">Sep 2021 — Sep 2022</span></div>
+        <div class="tr">Full-Stack Data Scientist</div>
+        <div class="tco">Data Pilot · Lahore, Pakistan</div>
+        <ul>
+          <li>Delivered <b>several data science projects for various customers</b>, spanning forecasting, segmentation and business intelligence.</li>
+          <li>Built a <b>customer segmentation solution</b> by unifying multi-source consumer data (local store database, Magento, Shopify), resolving identities via email and phone, then segmenting across defined commercial metrics.</li>
+          <li>Engineered cloud-based <b>ETL/ELT pipelines</b> and managed MLOps for a sales forecasting model.</li>
+          <li>Designed KPI dashboards on <b>Metabase</b>, giving clients self-service access to demand trends and operational metrics.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ti rv"><div class="td award"></div>
+      <div class="tc aw">
+        <div class="thead"><span class="ty award">Award</span><span class="tdate">Aug 2022</span></div>
+        <div class="tr">Employee of the Month</div>
+        <div class="tco">Data Pilot · Recognised for project delivery and client impact</div>
+      </div>
+    </div>
+
+    <div class="ti rv"><div class="td edu"></div>
+      <div class="tc">
+        <div class="thead"><span class="ty edu">Education</span><span class="tdate">Sep 2022 — Sep 2023</span></div>
+        <div class="tr">MSc Data Analytics &amp; Technologies — Distinction</div>
+        <div class="tco">University of Bolton, UK</div>
+        <p>Advanced study in data science, big data, research methods and solution design. Thesis on enhancing ALPR systems through a novel route-identification algorithm and a custom evaluation metric.</p>
+      </div>
+    </div>
+
+    <div class="ti rv"><div class="td award"></div>
+      <div class="tc aw">
+        <div class="thead"><span class="ty award">Award</span><span class="tdate">Oct 2023</span></div>
+        <div class="tr">Top Project — University of Bolton</div>
+        <div class="tco">Master's thesis selected among the university's top projects</div>
+      </div>
+    </div>
+
+    <div class="ti rv"><div class="td work"></div>
+      <div class="tc">
+        <div class="thead"><span class="ty work">Employment</span><span class="tdate">Apr 2024 — Present</span></div>
+        <div class="tr">Software Developer (AI)</div>
+        <div class="tco">Dual-Stream Ltd · Manchester, UK</div>
+        <ul>
+          <li>Led development of an <b>AI-powered video analytics solution</b> for a major UK supermarket chain, deploying real-time object detection across camera feeds at retail sites nationwide.</li>
+          <li>Implemented YOLO-based detection on <b>NVIDIA Orin edge devices</b>, delivering reliable real-time inference while optimising models to run within tight memory and compute constraints.</li>
+          <li>Re-architected a synchronous edge inference pipeline into an <b>asynchronous processing model</b>, dramatically reducing load and processing time per device.</li>
+          <li>Designed a <b>FastAPI backend</b> for low-latency event processing, alongside fleet-wide device monitoring enabling remote updates and continuous uptime.</li>
+          <li>Contributed to scaling a cloud platform into independent <b>microservices</b>, built an <b>embedded IoT application</b> on Raspberry Pi with GPIO hardware control, and delivered a centralised ETL pipeline unifying varied operational systems.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ti rv"><div class="td award"></div>
+      <div class="tc aw">
+        <div class="thead"><span class="ty award">Publication</span><span class="tdate">Sep 2025</span></div>
+        <div class="tr">Evaluation and Enhancement of ANPR System</div>
+        <div class="tco">ICRITO'2025 · 12th International Conference, Noida NCR, India</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="rv">
+    <div class="shead"><span class="snum">03</span><h2>Selected Work</h2></div>
+    <p class="sub">Production systems, published research and independent builds.</p>
+  </div>
+  <div class="pg">
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>01</span><span class="cat">Production</span></div>
+      <h3>Warehouse Video Analytics</h3>
+      <p>Real-time object detection pipeline for a major UK supermarket chain — camera ingestion through detection to automated alerting, replacing manual surveillance nationwide.</p>
+      <div class="pstack"><span class="ps">YOLO</span><span class="ps">NVIDIA Orin</span><span class="ps">FastAPI</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>02</span><span class="cat">Research</span></div>
+      <h3>Duplicate Vehicle Detection</h3>
+      <p>Novel "usual route identification" algorithm enhancing ALPR systems to detect cloned vehicles, with a character-wise accuracy metric achieving 96% against an 88% baseline.</p>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">ALPR</span><span class="ps">Custom Metrics</span></div>
+      <a class="pl" href="#research">Publication →</a>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>03</span><span class="cat">Personal</span></div>
+      <h3>Satellite Image Segmentation</h3>
+      <p>U-Net semantic segmentation masking building footprints in satellite imagery for urban analysis. 86.3% validation IoU on the Village Finder dataset.</p>
+      <div class="pstack"><span class="ps">U-Net</span><span class="ps">TensorFlow</span><span class="ps">Segmentation</span></div>
+      <a class="pl" href="https://github.com/nauman-akram/Satellite-Images-Segmentation" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>04</span><span class="cat">Architecture</span></div>
+      <h3>Multi-Tenant Platform Scaling</h3>
+      <p>Re-architected a monolithic cloud platform into independent microservices, with access control and data segregation keeping each customer's data isolated.</p>
+      <div class="pstack"><span class="ps">Microservices</span><span class="ps">C#</span><span class="ps">SQL</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>05</span><span class="cat">Embedded</span></div>
+      <h3>IoT Device Application</h3>
+      <p>Embedded Raspberry Pi application using Python and Kivy, with GPIO hardware control and an auto-restart mechanism for resilience through power loss.</p>
+      <div class="pstack"><span class="ps">Raspberry Pi</span><span class="ps">Kivy</span><span class="ps">GPIO</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>06</span><span class="cat">Data Eng</span></div>
+      <h3>Centralised ETL Warehouse</h3>
+      <p>Automated daily pipeline consolidating varied operational source systems into a central warehouse, handling differing structures across system versions.</p>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">SQL</span><span class="ps">ETL</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>07</span><span class="cat">Client</span></div>
+      <h3>Bakery Demand Forecasting</h3>
+      <p>Forecasting model incorporating external variables such as weather to predict demand ahead of time, enabling proactive production scheduling that cut wastage.</p>
+      <div class="pstack"><span class="ps">Time Series</span><span class="ps">Metabase</span><span class="ps">Python</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>08</span><span class="cat">Big Data</span></div>
+      <h3>Retail Consumer Insight</h3>
+      <p>Full pipeline from MongoDB through PySpark and Scikit-learn to Power BI, comparing multiple regression and classification approaches on retail data.</p>
+      <div class="pstack"><span class="ps">PySpark</span><span class="ps">MongoDB</span><span class="ps">Power BI</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>09</span><span class="cat">NLP</span></div>
+      <h3>BlogifyUs</h3>
+      <p>Django application crawling trending hashtags, generating abstractive summaries via sequence-to-sequence models and classifying public sentiment.</p>
+      <div class="pstack"><span class="ps">Django</span><span class="ps">Keras</span><span class="ps">Seq2Seq</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>10</span><span class="cat">NLP</span></div>
+      <h3>Information Retrieval System</h3>
+      <p>Vector space model search engine built from scratch — vocabulary extraction, term and document frequency scoring, TF-IDF weighting and relevance ranking.</p>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">TF-IDF</span></div>
+      <a class="pl" href="https://github.com/nauman-akram/IR-system" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>11</span><span class="cat">Deep Learning</span></div>
+      <h3>COVID-19 X-Ray Classification</h3>
+      <p>Transfer learning with VGG-16 and ResNet-18 to classify chest X-rays, extended to multi-label classification distinguishing COVID-19 from pneumonia.</p>
+      <div class="pstack"><span class="ps">PyTorch</span><span class="ps">Transfer Learning</span></div>
+      <a class="pl" href="https://github.com/nauman-akram/MSDS19041_COVID19_DLSpring2020" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>12</span><span class="cat">Security</span></div>
+      <h3>Network Anomaly Detection</h3>
+      <p>Hackathon finalist project detecting cyber attacks from network traffic patterns using the UNSW-NB15 dataset, reframed as binary anomaly detection.</p>
+      <div class="pstack"><span class="ps">Scikit-learn</span><span class="ps">Oracle Cloud</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ RESEARCH ═══ -->
+<section id="research">
+  <div class="rv">
+    <div class="shead"><span class="snum">04</span><h2>Research</h2></div>
+  </div>
+  <div class="pub rv">
+    <div class="publ mono">PEER-REVIEWED · SEPTEMBER 2025</div>
+    <h3>Evaluation and Enhancement of ANPR System</h3>
+    <p>12th International Conference on Reliability, Infocom Technologies and Optimisation — <span class="hi">ICRITO'2025</span>, Noida NCR, India · 18–19 September 2025.</p>
+    <p>Proposed a novel "usual route identification" algorithm and a character-wise accuracy metric for evaluating Automatic Licence Plate Recognition systems, achieving <span class="hi">96% evaluation accuracy</span> versus 88% with conventional string matching — reducing false penalisation for visually similar character misreadings. Recognised as a Top Project at the University of Bolton.</p>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" style="border-bottom:none">
+  <div class="cbox rv">
+    <div class="shead" style="justify-content:center"><span class="snum">05</span><h2>Get in touch</h2></div>
+    <p>Open to KTP Associate roles, AI and machine learning engineering positions, and PhD opportunities in computer vision, edge AI, automation or applied machine learning.</p>
+    <div class="clinks">
+      <a href="mailto:butt.nauman.akram@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/nauman-a-butt/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/nauman-akram" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fin">
+    <span>© <span id="yr"></span> Nauman Akram Butt · Manchester, UK</span>
+    <span class="views">Portfolio views <b id="views">—</b></span>
+  </div>
+</footer>
 
 </div>
 
-<footer>© <span id="yr"></span> Nauman Akram Butt · Manchester, United Kingdom</footer>
-
 <script>
-/* ---- theme: auto by time of day, with manual override ---- */
-var root=document.documentElement, btn=document.getElementById('themeBtn');
-function applyTheme(t){
-  root.setAttribute('data-theme',t);
-  btn.textContent = (t==='dark') ? '☀️' : '🌙';
-  btn.setAttribute('title', t==='dark' ? 'Switch to light' : 'Switch to dark');
-}
-function autoTheme(){
-  var h=new Date().getHours();
-  return (h>=7 && h<19) ? 'light' : 'dark';  /* daytime = light, evening = dark */
-}
-var manual=null;
-applyTheme(autoTheme());
-btn.addEventListener('click',function(){
-  manual = (root.getAttribute('data-theme')==='dark') ? 'light' : 'dark';
-  applyTheme(manual);
+/* ── theme: auto by time, manual override ── */
+var root=document.documentElement, tbtn=document.getElementById('tbtn'), manual=false;
+function setTheme(t){root.setAttribute('data-theme',t);tbtn.textContent=(t==='light')?'LIGHT':'DARK';}
+function autoTheme(){var h=new Date().getHours();return (h>=7&&h<19)?'light':'dark';}
+setTheme(autoTheme());
+tbtn.addEventListener('click',function(){
+  manual=true;
+  setTheme(root.getAttribute('data-theme')==='light'?'dark':'light');
 });
-/* re-check hourly if user hasn't overridden */
-setInterval(function(){ if(!manual) applyTheme(autoTheme()); }, 600000);
+setInterval(function(){if(!manual)setTheme(autoTheme());},600000);
 
-/* ---- nav ---- */
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){
-  if(window.scrollY>40){nav.classList.add('scrolled');}else{nav.classList.remove('scrolled');}
-});
-
-/* ---- reveal ---- */
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(e,i){
-    if(e.isIntersecting){
-      setTimeout(function(){e.target.classList.add('in');},(i%4)*70);
-      io.unobserve(e.target);
-    }
+/* ── reveal ── */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e,i){
+    if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in');},(i%4)*60);io.unobserve(e.target);}
   });
-},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
 
-/* ---- card glow ---- */
-document.querySelectorAll('.pc').forEach(function(c){
-  c.addEventListener('mousemove',function(ev){
-    var r=c.getBoundingClientRect();
-    c.style.setProperty('--mx',(ev.clientX-r.left)+'px');
-    c.style.setProperty('--my',(ev.clientY-r.top)+'px');
-  });
-});
-
 document.getElementById('yr').textContent=new Date().getFullYear();
-</script>
 
+/* ── portfolio view counter ── */
+(function(){
+  var el=document.getElementById('views');
+  fetch('https://api.counterapi.dev/v1/naumanakram/portfolio/up')
+    .then(function(r){return r.json();})
+    .then(function(d){ if(d&&typeof d.count!=='undefined'){el.textContent=d.count.toLocaleString();} })
+    .catch(function(){ el.textContent='—'; });
+})();
+</script>
 </body>
 </html>
