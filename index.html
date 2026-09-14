@@ -61,21 +61,12 @@ nav{
 }
 .nav-in{max-width:1180px;margin:0 auto;padding:0 30px;height:58px;display:flex;justify-content:space-between;align-items:center;}
 .brand{font-size:.76rem;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;}
-.brand span{color:var(--green);}
-.nav-right{display:flex;align-items:center;gap:2px;}
 .nav-links{display:flex;list-style:none;}
 .nav-links a{
   color:var(--ink-soft);text-decoration:none;font-size:.7rem;font-weight:600;letter-spacing:1.2px;
   text-transform:uppercase;padding:9px 13px;transition:.18s;
 }
 .nav-links a:hover{color:var(--green);}
-.tbtn{
-  background:none;border:1px solid var(--rule);color:var(--ink);
-  height:30px;padding:0 11px;cursor:pointer;font-size:.64rem;font-weight:700;letter-spacing:1.2px;
-  text-transform:uppercase;margin-left:12px;transition:.2s;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.tbtn:hover{border-color:var(--green);color:var(--green);}
 @media(max-width:900px){.nav-links li:not(:last-child){display:none;}}
 
 /* ══════════════ HERO ══════════════ */
@@ -86,23 +77,24 @@ nav{
 .status{
   display:inline-flex;align-items:center;gap:9px;font-size:.66rem;font-weight:700;letter-spacing:1.6px;
   text-transform:uppercase;color:var(--green);border:1px solid var(--green);
-  padding:5px 12px;margin-bottom:34px;
+  padding:5px 12px;margin-bottom:30px;
 }
 .blip{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blip 1.6s steps(1) infinite;}
 @keyframes blip{0%,60%{opacity:1}61%,100%{opacity:.15}}
 
 h1{
-  font-size:clamp(2.7rem,7.4vw,5.4rem);font-weight:800;line-height:.94;
-  letter-spacing:-3px;margin-bottom:28px;text-transform:uppercase;
+  font-size:clamp(1.75rem,4.3vw,3.05rem);font-weight:800;line-height:1.02;
+  letter-spacing:-1.6px;margin-bottom:26px;text-transform:uppercase;white-space:nowrap;
 }
-h1 .l2{color:var(--green);display:block;}
+h1 .l2{color:var(--green);display:block;letter-spacing:-1.2px;}
+@media(max-width:520px){h1{white-space:normal;letter-spacing:-1px;}}
 
 .hmeta{display:flex;gap:34px;flex-wrap:wrap;margin-bottom:30px;padding-top:22px;border-top:1px solid var(--rule);}
 .hm{font-size:.68rem;letter-spacing:1.1px;text-transform:uppercase;}
 .hm .k{color:var(--ink-dim);display:block;margin-bottom:3px;font-size:.6rem;}
 .hm .v{color:var(--ink);font-weight:700;}
 
-.lede{font-size:1.02rem;color:var(--ink-soft);max-width:600px;margin-bottom:34px;}
+.lede{font-size:1.02rem;color:var(--ink-soft);max-width:600px;margin-bottom:32px;}
 .lede b{color:var(--ink);font-weight:650;}
 
 .btns{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--rule);width:fit-content;}
@@ -122,11 +114,19 @@ h1 .l2{color:var(--green);display:block;}
 .pf-fb{position:absolute;inset:0;display:grid;place-items:center;font-size:2.4rem;font-weight:800;letter-spacing:-1px;color:var(--green);}
 .pf-tag{
   position:absolute;left:0;bottom:0;right:0;background:var(--paper);border-top:1px solid var(--rule);
-  padding:9px 12px;font-size:.6rem;letter-spacing:1.2px;text-transform:uppercase;
-  display:flex;justify-content:space-between;
+  padding:8px 12px;font-size:.6rem;letter-spacing:1.2px;text-transform:uppercase;
+  display:flex;justify-content:space-between;align-items:center;
 }
 .pf-tag .a{color:var(--green);font-weight:700;}
-.pf-tag .b{color:var(--ink-dim);}
+.pf-tag .b{color:var(--ink-dim);display:flex;align-items:center;gap:8px;}
+.tclock{
+  background:none;border:none;cursor:pointer;color:var(--ink-dim);
+  font-size:.82rem;line-height:1;padding:0;transition:.2s;
+  display:flex;align-items:center;gap:5px;
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+.tclock:hover{color:var(--green);}
+.tclock .hr{font-size:.6rem;letter-spacing:1px;font-weight:700;}
 .corner{position:absolute;width:9px;height:9px;border-color:var(--green);z-index:3;}
 .c-tl{top:7px;left:7px;border-top:2px solid;border-left:2px solid;}
 .c-tr{top:7px;right:7px;border-top:2px solid;border-right:2px solid;}
@@ -200,13 +200,11 @@ h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-1px;text
 .tc li::marker{color:var(--green);}
 .tc li b,.tc p b{color:var(--ink);font-weight:650;}
 .tc p{color:var(--ink-soft);font-size:.89rem;}
-
-/* award = compact */
 .tc.aw{padding:15px 20px;background:transparent;}
 .tc.aw .tr{font-size:.94rem;}
 
 /* ══════════════ PROJECTS ══════════════ */
-.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:-1px;border-top:1px solid var(--rule);border-left:1px solid var(--rule);}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule);}
 @media(max-width:980px){.pg{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:640px){.pg{grid-template-columns:1fr;}}
 .pc{
@@ -239,6 +237,7 @@ h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-1px;text
 
 /* ══════════════ CONTACT ══════════════ */
 .cbox{text-align:center;padding:26px 0;}
+.cbox .shead{justify-content:center;}
 .cbox h2{margin-bottom:14px;}
 .cbox p{color:var(--ink-soft);max-width:480px;margin:0 auto 30px;font-size:.96rem;}
 .clinks{display:flex;justify-content:center;flex-wrap:wrap;border:1px solid var(--rule);width:fit-content;margin:0 auto;}
@@ -254,7 +253,6 @@ footer{padding:26px 0;}
 .fin{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
   font-size:.63rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-dim);
   font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
-.views{display:flex;align-items:center;gap:8px;}
 .views b{color:var(--green);font-weight:700;}
 </style>
 </head>
@@ -263,28 +261,25 @@ footer{padding:26px 0;}
 
 <nav>
   <div class="nav-in">
-    <div class="brand mono">NAUMAN AKRAM BUTT <span>/ AI</span></div>
-    <div class="nav-right">
-      <ul class="nav-links mono">
-        <li><a href="#about">About</a></li>
-        <li><a href="#journey">Journey</a></li>
-        <li><a href="#projects">Work</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="tbtn" id="tbtn">LIGHT</button>
-    </div>
+    <div class="brand mono">NAUMAN AKRAM BUTT</div>
+    <ul class="nav-links mono">
+      <li><a href="#about">About</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
 </nav>
 
 <div class="wrap">
 
 <!-- ═══ HERO ═══ -->
-<section class="hero" id="top" style="border-bottom:1px solid var(--rule)">
+<section class="hero" id="top">
   <div class="hgrid">
     <div>
       <div class="status mono"><span class="blip"></span> Open to new opportunities</div>
-      <h1>Nauman<br>Akram Butt<span class="l2">AI &amp; Data Science</span></h1>
+      <h1>Nauman Akram Butt<span class="l2">AI &amp; Data Science</span></h1>
       <p class="lede">I build <b>computer vision, edge AI and automation systems</b> that run in production — from real-time object detection on embedded hardware to published research on intelligent recognition systems.</p>
       <div class="hmeta mono">
         <div class="hm"><span class="k">Based in</span><span class="v">Manchester, UK</span></div>
@@ -306,7 +301,15 @@ footer{padding:26px 0;}
       <img src="profile.jpg" alt="Nauman Akram Butt"
            onerror="this.style.display='none'"
            onload="document.getElementById('fb').style.display='none'">
-      <div class="pf-tag mono"><span class="a">AI Software Developer</span><span class="b">MCR / UK</span></div>
+      <div class="pf-tag mono">
+        <span class="a">AI Software Developer</span>
+        <span class="b">
+          <button class="tclock" id="tclock" aria-label="Toggle theme" title="Local time — click to switch theme">
+            <span id="tico">☀</span><span class="hr" id="thr">--:--</span>
+          </button>
+          MCR / UK
+        </span>
+      </div>
     </div>
   </div>
 </section>
@@ -566,7 +569,7 @@ footer{padding:26px 0;}
 <!-- ═══ CONTACT ═══ -->
 <section id="contact" style="border-bottom:none">
   <div class="cbox rv">
-    <div class="shead" style="justify-content:center"><span class="snum">05</span><h2>Get in touch</h2></div>
+    <div class="shead"><span class="snum">05</span><h2>Get in touch</h2></div>
     <p>Open to KTP Associate roles, AI and machine learning engineering positions, and PhD opportunities in computer vision, edge AI, automation or applied machine learning.</p>
     <div class="clinks">
       <a href="mailto:butt.nauman.akram@gmail.com">Email</a>
@@ -586,16 +589,39 @@ footer{padding:26px 0;}
 </div>
 
 <script>
-/* ── theme: auto by time, manual override ── */
-var root=document.documentElement, tbtn=document.getElementById('tbtn'), manual=false;
-function setTheme(t){root.setAttribute('data-theme',t);tbtn.textContent=(t==='light')?'LIGHT':'DARK';}
-function autoTheme(){var h=new Date().getHours();return (h>=7&&h<19)?'light':'dark';}
-setTheme(autoTheme());
-tbtn.addEventListener('click',function(){
+/* ── theme follows local time, click clock to override ── */
+var root=document.documentElement,
+    btn=document.getElementById('tclock'),
+    ico=document.getElementById('tico'),
+    hr=document.getElementById('thr'),
+    manual=false;
+
+function ukParts(){
+  /* always read Europe/London, regardless of visitor timezone */
+  try{
+    var f=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit',hour12:false}),
+        s=f.format(new Date()).split(':');
+    return {h:parseInt(s[0],10), m:s[1]};
+  }catch(e){
+    var d=new Date();
+    return {h:d.getHours(), m:String(d.getMinutes()).padStart(2,'0')};
+  }
+}
+function setTheme(t){
+  root.setAttribute('data-theme',t);
+  ico.textContent=(t==='light')?'☀':'☾';
+}
+function tick(){
+  var p=ukParts();
+  hr.textContent=String(p.h).padStart(2,'0')+':'+p.m;
+  if(!manual) setTheme((p.h>=7 && p.h<19)?'light':'dark');
+}
+tick();
+setInterval(tick,60000);
+btn.addEventListener('click',function(){
   manual=true;
   setTheme(root.getAttribute('data-theme')==='light'?'dark':'light');
 });
-setInterval(function(){if(!manual)setTheme(autoTheme());},600000);
 
 /* ── reveal ── */
 var io=new IntersectionObserver(function(es){
