@@ -1,12 +1,12 @@
 /* ══════════════ THEME ══════════════ */
 :root[data-theme="light"]{
-  --paper:#F1EEE4;
-  --card:#F8F6EF;
+  --paper:#FAF9F5;
+  --card:#FFFFFF;
   --ink:#14251B;
   --ink-soft:#4A5C51;
   --ink-dim:#8A978E;
-  --rule:#CFC9B8;
-  --rule-soft:#DED9CA;
+  --rule:#DAD6CB;
+  --rule-soft:#E8E5DC;
   --green:#1F7A4D;
   --green-bright:#2FA265;
   --gold:#9A7B24;
@@ -38,7 +38,7 @@ body{
 .dots{
   position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
   background-image:radial-gradient(var(--rule) 1px,transparent 1px);
-  background-size:26px 26px;
+  background-size:52px 52px;
 }
 .wrap{max-width:1180px;margin:0 auto;padding:0 30px;position:relative;z-index:2;}
 
