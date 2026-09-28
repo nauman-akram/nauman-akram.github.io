@@ -4,257 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Nauman Akram Butt — AI &amp; Data Science</title>
-<meta name="description" content="AI Software Developer. Computer vision, edge AI, automation and production machine learning. MSc Data Analytics (Distinction). Published at ICRITO'2025.">
-<style>
-/* ══════════════ THEME ══════════════ */
-:root[data-theme="light"]{
-  --paper:#F1EEE4;
-  --paper2:#E8E4D7;
-  --card:#F8F6EF;
-  --ink:#14251B;
-  --ink-soft:#4A5C51;
-  --ink-dim:#8A978E;
-  --rule:#CFC9B8;
-  --rule-soft:#DED9CA;
-  --green:#1F7A4D;
-  --green-bright:#2FA265;
-  --gold:#9A7B24;
-}
-:root[data-theme="dark"]{
-  --paper:#1B241E;
-  --paper2:#141C17;
-  --card:#222D26;
-  --ink:#EDEAE0;
-  --ink-soft:#AFBBB3;
-  --ink-dim:#7C8A82;
-  --rule:#39463E;
-  --rule-soft:#2D3831;
-  --green:#5FD693;
-  --green-bright:#7FE8AB;
-  --gold:#D4B457;
-}
-
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
-body{
-  background:var(--paper);color:var(--ink);
-  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  line-height:1.6;overflow-x:hidden;
-  transition:background .4s,color .4s;
-}
-.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
-::selection{background:var(--green);color:var(--paper);}
-
-/* dot grid */
-.dots{
-  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
-  background-image:radial-gradient(var(--rule) 1px,transparent 1px);
-  background-size:26px 26px;
-}
-.wrap{max-width:1180px;margin:0 auto;padding:0 30px;position:relative;z-index:2;}
-
-/* ══════════════ NAV ══════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:90;
-  background:var(--paper);border-bottom:1px solid var(--rule);
-  transition:background .4s,border-color .4s;
-}
-.nav-in{max-width:1180px;margin:0 auto;padding:0 30px;height:58px;display:flex;justify-content:space-between;align-items:center;}
-.brand{font-size:.76rem;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;}
-.nav-links{display:flex;list-style:none;}
-.nav-links a{
-  color:var(--ink-soft);text-decoration:none;font-size:.7rem;font-weight:600;letter-spacing:1.2px;
-  text-transform:uppercase;padding:9px 13px;transition:.18s;
-}
-.nav-links a:hover{color:var(--green);}
-@media(max-width:900px){.nav-links li:not(:last-child){display:none;}}
-
-/* ══════════════ HERO ══════════════ */
-.hero{padding:150px 0 90px;border-bottom:1px solid var(--rule);}
-.hgrid{display:grid;grid-template-columns:1.35fr .65fr;gap:56px;align-items:end;}
-@media(max-width:900px){.hgrid{grid-template-columns:1fr;gap:40px;}.hero{padding:120px 0 70px;}}
-
-.status{
-  display:inline-flex;align-items:center;gap:9px;font-size:.66rem;font-weight:700;letter-spacing:1.6px;
-  text-transform:uppercase;color:var(--green);border:1px solid var(--green);
-  padding:5px 12px;margin-bottom:30px;
-}
-.blip{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blip 1.6s steps(1) infinite;}
-@keyframes blip{0%,60%{opacity:1}61%,100%{opacity:.15}}
-
-h1{
-  font-size:clamp(1.75rem,4.3vw,3.05rem);font-weight:900;line-height:1.02;
-  letter-spacing:-1.6px;margin-bottom:26px;text-transform:uppercase;white-space:nowrap;
-}
-h1 .l2{color:var(--green);display:block;letter-spacing:-.6px;font-size:.62em;font-weight:750;margin-top:6px;}
-@media(max-width:520px){h1{white-space:normal;letter-spacing:-1px;}}
-
-.hmeta{display:flex;gap:34px;flex-wrap:wrap;margin-bottom:30px;padding-top:22px;border-top:1px solid var(--rule);}
-.hm{font-size:.68rem;letter-spacing:1.1px;text-transform:uppercase;}
-.hm .k{color:var(--ink-dim);display:block;margin-bottom:3px;font-size:.6rem;}
-.hm .v{color:var(--ink);font-weight:700;}
-
-.lede{font-size:1.02rem;color:var(--ink-soft);max-width:600px;margin-bottom:32px;}
-.lede b{color:var(--ink);font-weight:650;}
-
-.btns{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--rule);width:fit-content;}
-.btn{
-  padding:13px 24px;font-weight:700;font-size:.68rem;letter-spacing:1.4px;text-transform:uppercase;
-  text-decoration:none;color:var(--ink);border-right:1px solid var(--rule);transition:.2s;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.btn:last-child{border-right:none;}
-.btn:hover{background:var(--green);color:var(--paper);}
-.btn.pri{background:var(--green);color:var(--paper);}
-.btn.pri:hover{background:var(--green-bright);}
-
-/* photo */
-.pf{position:relative;border:1px solid var(--rule);background:var(--card);aspect-ratio:4/5;overflow:hidden;}
-.pf img{width:100%;height:100%;object-fit:cover;object-position:center 14%;display:block;filter:saturate(.92);}
-.pf-fb{position:absolute;inset:0;display:grid;place-items:center;font-size:2.4rem;font-weight:800;letter-spacing:-1px;color:var(--green);}
-.pf-tag{
-  position:absolute;left:0;bottom:0;right:0;background:var(--paper);border-top:1px solid var(--rule);
-  padding:8px 12px;font-size:.6rem;letter-spacing:1.2px;text-transform:uppercase;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.pf-tag .a{color:var(--green);font-weight:700;}
-.pf-tag .b{color:var(--ink-dim);display:flex;align-items:center;gap:8px;}
-.tclock{
-  background:none;border:none;cursor:pointer;color:var(--ink-dim);
-  font-size:.82rem;line-height:1;padding:0;transition:.2s;
-  display:flex;align-items:center;gap:5px;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.tclock:hover{color:var(--green);}
-.tclock .hr{font-size:.6rem;letter-spacing:1px;font-weight:700;}
-.corner{position:absolute;width:9px;height:9px;border-color:var(--green);z-index:3;}
-.c-tl{top:7px;left:7px;border-top:2px solid;border-left:2px solid;}
-.c-tr{top:7px;right:7px;border-top:2px solid;border-right:2px solid;}
-.c-bl{bottom:36px;left:7px;border-bottom:2px solid;border-left:2px solid;}
-.c-br{bottom:36px;right:7px;border-bottom:2px solid;border-right:2px solid;}
-
-/* ══════════════ SECTIONS ══════════════ */
-section{padding:86px 0;border-bottom:1px solid var(--rule);}
-.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:14px;}
-.snum{
-  font-size:.68rem;font-weight:700;letter-spacing:1.4px;color:var(--green);
-  border:1px solid var(--green);padding:2px 7px;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-1px;text-transform:uppercase;}
-.sub{color:var(--ink-soft);max-width:600px;margin-bottom:46px;font-size:.96rem;}
-
-.rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
-.rv.in{opacity:1;transform:none;}
-
-/* ABOUT */
-.about{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start;}
-@media(max-width:880px){.about{grid-template-columns:1fr;}}
-.about p{color:var(--ink-soft);margin-bottom:16px;font-size:.96rem;}
-.about b{color:var(--ink);font-weight:650;}
-.skb{border:1px solid var(--rule);background:var(--card);}
-.skrow{border-bottom:1px solid var(--rule-soft);padding:17px 20px;}
-.skrow:last-child{border-bottom:none;}
-.skrow h4{
-  font-size:.6rem;text-transform:uppercase;letter-spacing:1.6px;color:var(--green);margin-bottom:10px;font-weight:700;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.tags{display:flex;flex-wrap:wrap;gap:6px;}
-.t{
-  border:1px solid var(--rule);color:var(--ink-soft);font-size:.68rem;padding:3px 8px;transition:.18s;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.t:hover{border-color:var(--green);color:var(--green);}
-
-/* ══════════════ TIMELINE ══════════════ */
-.legend{display:flex;gap:22px;margin-bottom:34px;flex-wrap:wrap;}
-.lg{display:flex;align-items:center;gap:7px;font-size:.62rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-dim);}
-.lg i{width:8px;height:8px;display:block;}
-
-.tl{position:relative;padding-left:34px;}
-.tl::before{content:"";position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:var(--rule);}
-.ti{position:relative;margin-bottom:16px;}
-.ti:last-child{margin-bottom:0;}
-.td{position:absolute;left:-34px;top:20px;width:11px;height:11px;background:var(--paper);border:2px solid var(--ink-dim);z-index:2;}
-.td.edu{border-color:var(--gold);}
-.td.work{border-color:var(--green);background:var(--green);}
-.td.free{border-color:var(--ink-dim);}
-.td.award{border-color:var(--gold);background:var(--gold);transform:rotate(45deg);}
-
-.tc{border:1px solid var(--rule);background:var(--card);padding:20px 22px;transition:.22s;}
-.tc:hover{border-color:var(--green);}
-.thead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:9px;}
-.ty{
-  font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border:1px solid;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.ty.edu{color:var(--gold);border-color:var(--gold);}
-.ty.work{color:var(--green);border-color:var(--green);}
-.ty.free{color:var(--ink-dim);border-color:var(--rule);}
-.ty.award{color:var(--gold);border-color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,transparent);}
-.tdate{font-size:.63rem;letter-spacing:1.1px;color:var(--ink-dim);text-transform:uppercase;font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
-.tr{font-size:1.04rem;font-weight:750;letter-spacing:-.3px;margin-bottom:2px;}
-.tco{color:var(--ink-soft);font-size:.82rem;margin-bottom:11px;}
-.tc ul{padding-left:17px;color:var(--ink-soft);font-size:.89rem;}
-.tc li{margin-bottom:6px;}
-.tc li::marker{color:var(--green);}
-.tc li b,.tc p b{color:var(--ink);font-weight:650;}
-.tc p{color:var(--ink-soft);font-size:.89rem;}
-.tc.aw{padding:15px 20px;background:transparent;}
-.tc.aw .tr{font-size:.94rem;}
-
-/* ══════════════ PROJECTS ══════════════ */
-.pg{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule);}
-@media(max-width:980px){.pg{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:640px){.pg{grid-template-columns:1fr;}}
-.pc{
-  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  padding:24px 22px;display:flex;flex-direction:column;transition:.22s;position:relative;background:transparent;
-}
-.pc:hover{background:var(--card);}
-.pidx{
-  font-size:.6rem;letter-spacing:1.4px;color:var(--ink-dim);margin-bottom:14px;
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-  display:flex;justify-content:space-between;
-}
-.pidx .cat{color:var(--green);font-weight:700;}
-.pc h3{font-size:.99rem;margin-bottom:9px;letter-spacing:-.2px;line-height:1.3;font-weight:750;}
-.pc p{color:var(--ink-soft);font-size:.86rem;flex-grow:1;margin-bottom:14px;}
-.pstack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
-.ps{font-size:.6rem;letter-spacing:.8px;color:var(--ink-dim);border:1px solid var(--rule-soft);padding:2px 6px;font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
-.pl{
-  color:var(--green);text-decoration:none;font-size:.64rem;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;
-  display:inline-flex;align-items:center;gap:6px;transition:.2s;font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.pl:hover{gap:10px;}
-
-/* ══════════════ RESEARCH ══════════════ */
-.pub{border:1px solid var(--green);padding:28px;background:var(--card);}
-.publ{font-size:.62rem;letter-spacing:1.6px;color:var(--green);font-weight:700;margin-bottom:12px;font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
-.pub h3{font-size:1.14rem;margin-bottom:10px;letter-spacing:-.3px;}
-.pub p{color:var(--ink-soft);font-size:.91rem;margin-bottom:8px;}
-.pub .hi{color:var(--ink);font-weight:650;}
-
-/* ══════════════ CONTACT ══════════════ */
-.cbox{text-align:center;padding:26px 0;}
-.cbox .shead{justify-content:center;}
-.cbox h2{margin-bottom:14px;}
-.cbox p{color:var(--ink-soft);max-width:480px;margin:0 auto 30px;font-size:.96rem;}
-.clinks{display:flex;justify-content:center;flex-wrap:wrap;border:1px solid var(--rule);width:fit-content;margin:0 auto;}
-.clinks a{
-  padding:14px 26px;color:var(--ink);text-decoration:none;font-size:.68rem;font-weight:700;letter-spacing:1.4px;
-  text-transform:uppercase;border-right:1px solid var(--rule);transition:.2s;font-family:"SFMono-Regular",Consolas,Menlo,monospace;
-}
-.clinks a:last-child{border-right:none;}
-.clinks a:hover{background:var(--green);color:var(--paper);}
-
-/* ══════════════ FOOTER ══════════════ */
-footer{padding:26px 0;}
-.fin{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
-  font-size:.63rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-dim);
-  font-family:"SFMono-Regular",Consolas,Menlo,monospace;}
-.views b{color:var(--green);font-weight:700;}
-</style>
+<meta name="description" content="AI Software Developer. Computer vision, edge AI, automation, data engineering and production machine learning. MSc Data Analytics (Distinction). Published at ICRITO'2025.">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="dots"></div>
@@ -280,10 +31,10 @@ footer{padding:26px 0;}
     <div>
       <div class="status mono"><span class="blip"></span> Open to new opportunities</div>
       <h1>Nauman Akram Butt<span class="l2">AI &amp; Data Science</span></h1>
-      <p class="lede">I build <b>computer vision, edge AI and automation systems</b> that run in production — from real-time object detection on embedded hardware to published research on intelligent recognition systems.</p>
+      <p class="lede">I build <b>computer vision, edge AI and data systems</b> that run in production — from real-time object detection on embedded hardware to data pipelines and published research on intelligent recognition systems.</p>
       <div class="hmeta mono">
         <div class="hm"><span class="k">Based in</span><span class="v">Manchester, UK</span></div>
-        <div class="hm"><span class="k">Focus</span><span class="v">Vision · Edge AI · NLP</span></div>
+        <div class="hm"><span class="k">Focus</span><span class="v">Vision · Edge AI · Data</span></div>
         <div class="hm"><span class="k">Education</span><span class="v">MSc — Distinction</span></div>
         <div class="hm"><span class="k">Published</span><span class="v">ICRITO'2025</span></div>
       </div>
@@ -304,7 +55,7 @@ footer{padding:26px 0;}
       <div class="pf-tag mono">
         <span class="a">AI Software Developer</span>
         <span class="b">
-          <button class="tclock" id="tclock" aria-label="Toggle theme" title="Local time — click to switch theme">
+          <button class="tclock" id="tclock" aria-label="Toggle theme" title="UK time — click to switch theme">
             <span id="tico">☀</span><span class="hr" id="thr">--:--</span>
           </button>
           MCR / UK
@@ -322,9 +73,9 @@ footer{padding:26px 0;}
   </div>
   <div class="about">
     <div class="rv">
-      <p>I'm an <b>AI Software Developer</b> working across computer vision, edge AI, NLP and automation. My work sits where research meets production: taking approaches that exist in papers and making them run reliably on real hardware, at scale, for real businesses.</p>
+      <p>I'm an <b>AI Software Developer</b> working across computer vision, edge AI, data engineering and automation, with <b>Python</b> as my primary language throughout my career. My work sits where research meets production: taking approaches that exist in papers and making them run reliably on real hardware, at scale, for real businesses.</p>
       <p>Currently I lead development of a real-time <b>video analytics platform</b> for a major UK supermarket chain, running object detection on <b>NVIDIA Orin edge devices</b> deployed across retail sites nationwide — optimising models to work within tight memory and compute constraints.</p>
-      <p>Previously, as a <b>Data Scientist</b>, I delivered projects for commercial customers: unifying fragmented multi-source consumer data, building forecasting systems, and designing KPI dashboards that directly informed business decisions. Before that I spent two years freelancing in computer vision and NLP for international clients.</p>
+      <p>Previously, as a <b>Data Scientist</b>, I delivered projects for commercial customers: unifying customer data across PoS and e-commerce platforms, building ingestion pipelines and change-data-capture flows on AWS, forecasting demand, and designing dashboards that directly informed business decisions. Before that I spent two years freelancing in computer vision and NLP for international clients.</p>
       <p>My <b>Master's thesis</b> on enhancing Automatic Licence Plate Recognition was published at <b>ICRITO'2025</b> and recognised as a Top Project at the University of Bolton.</p>
       <p>I'm currently deepening my work in <b>Generative AI, LLMs and RAG systems</b> through NVIDIA and Udemy coursework, and building a RAG-based retrieval system independently.</p>
     </div>
@@ -334,11 +85,11 @@ footer{padding:26px 0;}
       <div class="skrow"><h4>NLP &amp; Generative AI</h4><div class="tags">
         <span class="t">RAG</span><span class="t">LLMs</span><span class="t">TF-IDF</span><span class="t">Sentiment</span><span class="t">Seq2Seq</span><span class="t">Summarisation</span></div></div>
       <div class="skrow"><h4>Languages</h4><div class="tags">
-        <span class="t">Python</span><span class="t">C#</span><span class="t">SQL</span><span class="t">R</span><span class="t">JavaScript</span></div></div>
+        <span class="t">Python</span><span class="t">SQL</span><span class="t">C#</span><span class="t">R</span><span class="t">JavaScript</span></div></div>
       <div class="skrow"><h4>Frameworks</h4><div class="tags">
         <span class="t">TensorFlow</span><span class="t">PyTorch</span><span class="t">Scikit-learn</span><span class="t">FastAPI</span><span class="t">PySpark</span><span class="t">Django</span></div></div>
-      <div class="skrow"><h4>Architecture &amp; Cloud</h4><div class="tags">
-        <span class="t">Microservices</span><span class="t">Azure</span><span class="t">AWS</span><span class="t">MongoDB</span><span class="t">ETL/ELT</span><span class="t">Power BI</span><span class="t">Metabase</span></div></div>
+      <div class="skrow"><h4>Data &amp; Cloud</h4><div class="tags">
+        <span class="t">AWS SageMaker</span><span class="t">Azure</span><span class="t">MongoDB</span><span class="t">ETL/ELT</span><span class="t">Microservices</span><span class="t">Power BI</span><span class="t">Metabase</span></div></div>
     </div>
   </div>
 </section>
@@ -395,10 +146,10 @@ footer{padding:26px 0;}
         <div class="tr">Full-Stack Data Scientist</div>
         <div class="tco">Data Pilot · Lahore, Pakistan</div>
         <ul>
-          <li>Delivered <b>several data science projects for various customers</b>, spanning forecasting, segmentation and business intelligence.</li>
-          <li>Built a <b>customer segmentation solution</b> by unifying multi-source consumer data (local store database, Magento, Shopify), resolving identities via email and phone, then segmenting across defined commercial metrics.</li>
-          <li>Engineered cloud-based <b>ETL/ELT pipelines</b> and managed MLOps for a sales forecasting model.</li>
-          <li>Designed KPI dashboards on <b>Metabase</b>, giving clients self-service access to demand trends and operational metrics.</li>
+          <li>Delivered <b>several data science projects for various customers</b>, spanning data engineering, forecasting, segmentation and business intelligence, primarily in <b>Python</b>.</li>
+          <li>Unified customer data from <b>PoS, WooCommerce, Magento and Shopify</b>, resolving identities via email and phone to power segmentation for targeted email marketing.</li>
+          <li>Set up an <b>AWS SageMaker pipeline</b> capturing MongoDB change data, persisting it to a database and serving a live dashboard for an operations team.</li>
+          <li>Engineered cloud-based <b>ETL/ELT pipelines</b> ingesting multiple data sources, and managed MLOps for a sales forecasting model.</li>
         </ul>
       </div>
     </div>
@@ -458,7 +209,7 @@ footer{padding:26px 0;}
 <section id="projects">
   <div class="rv">
     <div class="shead"><span class="snum">03</span><h2>Selected Work</h2></div>
-    <p class="sub">Production systems, published research and independent builds.</p>
+    <p class="sub">Production systems, data pipelines, published research and independent builds.</p>
   </div>
   <div class="pg">
 
@@ -466,7 +217,7 @@ footer{padding:26px 0;}
       <div class="pidx mono"><span>01</span><span class="cat">Production</span></div>
       <h3>Warehouse Video Analytics</h3>
       <p>Real-time object detection pipeline for a major UK supermarket chain — camera ingestion through detection to automated alerting, replacing manual surveillance nationwide.</p>
-      <div class="pstack"><span class="ps">YOLO</span><span class="ps">NVIDIA Orin</span><span class="ps">FastAPI</span></div>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">YOLO</span><span class="ps">NVIDIA Orin</span><span class="ps">FastAPI</span></div>
     </div>
 
     <div class="pc rv">
@@ -507,28 +258,49 @@ footer{padding:26px 0;}
     </div>
 
     <div class="pc rv">
-      <div class="pidx mono"><span>07</span><span class="cat">Client</span></div>
-      <h3>Bakery Demand Forecasting</h3>
-      <p>Forecasting model incorporating external variables such as weather to predict demand ahead of time, enabling proactive production scheduling that cut wastage.</p>
-      <div class="pstack"><span class="ps">Time Series</span><span class="ps">Metabase</span><span class="ps">Python</span></div>
+      <div class="pidx mono"><span>07</span><span class="cat">Data Pilot</span></div>
+      <h3>Unified Customer Data for Email Marketing</h3>
+      <p>Consolidated customer records from PoS, WooCommerce, Magento and Shopify into a single customer view, resolving identities via email and phone, then segmented buyers on commercial metrics such as recency and average order value to drive targeted email campaigns.</p>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">SQL</span><span class="ps">E-commerce APIs</span><span class="ps">Segmentation</span></div>
     </div>
 
     <div class="pc rv">
-      <div class="pidx mono"><span>08</span><span class="cat">Big Data</span></div>
+      <div class="pidx mono"><span>08</span><span class="cat">Data Pilot</span></div>
+      <h3>MongoDB Change Capture to Ops Dashboard</h3>
+      <p>Set up an AWS SageMaker pipeline capturing MongoDB change data, persisting each change into a database and serving a dashboard that let the operations team track and prioritise work from near-live data.</p>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">AWS SageMaker</span><span class="ps">MongoDB CDC</span><span class="ps">Dashboards</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>09</span><span class="cat">Data Pilot</span></div>
+      <h3>Multi-Source Data Ingestion</h3>
+      <p>Built Python ingestion pipelines pulling data from several client sources into a centralised store, standardising formats and scheduling refreshes so downstream analytics stayed current and consistent.</p>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">ETL/ELT</span><span class="ps">Cloud</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>10</span><span class="cat">Data Pilot</span></div>
+      <h3>Bakery Demand Forecasting</h3>
+      <p>Forecasting model incorporating external variables such as weather to predict demand ahead of time, enabling proactive production scheduling that cut wastage.</p>
+      <div class="pstack"><span class="ps">Python</span><span class="ps">Time Series</span><span class="ps">Metabase</span></div>
+    </div>
+
+    <div class="pc rv">
+      <div class="pidx mono"><span>11</span><span class="cat">Big Data</span></div>
       <h3>Retail Consumer Insight</h3>
       <p>Full pipeline from MongoDB through PySpark and Scikit-learn to Power BI, comparing multiple regression and classification approaches on retail data.</p>
       <div class="pstack"><span class="ps">PySpark</span><span class="ps">MongoDB</span><span class="ps">Power BI</span></div>
     </div>
 
     <div class="pc rv">
-      <div class="pidx mono"><span>09</span><span class="cat">NLP</span></div>
+      <div class="pidx mono"><span>12</span><span class="cat">NLP</span></div>
       <h3>BlogifyUs</h3>
       <p>Django application crawling trending hashtags, generating abstractive summaries via sequence-to-sequence models and classifying public sentiment.</p>
       <div class="pstack"><span class="ps">Django</span><span class="ps">Keras</span><span class="ps">Seq2Seq</span></div>
     </div>
 
     <div class="pc rv">
-      <div class="pidx mono"><span>10</span><span class="cat">NLP</span></div>
+      <div class="pidx mono"><span>13</span><span class="cat">NLP</span></div>
       <h3>Information Retrieval System</h3>
       <p>Vector space model search engine built from scratch — vocabulary extraction, term and document frequency scoring, TF-IDF weighting and relevance ranking.</p>
       <div class="pstack"><span class="ps">Python</span><span class="ps">TF-IDF</span></div>
@@ -536,7 +308,7 @@ footer{padding:26px 0;}
     </div>
 
     <div class="pc rv">
-      <div class="pidx mono"><span>11</span><span class="cat">Deep Learning</span></div>
+      <div class="pidx mono"><span>14</span><span class="cat">Deep Learning</span></div>
       <h3>COVID-19 X-Ray Classification</h3>
       <p>Transfer learning with VGG-16 and ResNet-18 to classify chest X-rays, extended to multi-label classification distinguishing COVID-19 from pneumonia.</p>
       <div class="pstack"><span class="ps">PyTorch</span><span class="ps">Transfer Learning</span></div>
@@ -544,7 +316,7 @@ footer{padding:26px 0;}
     </div>
 
     <div class="pc rv">
-      <div class="pidx mono"><span>12</span><span class="cat">Security</span></div>
+      <div class="pidx mono"><span>15</span><span class="cat">Security</span></div>
       <h3>Network Anomaly Detection</h3>
       <p>Hackathon finalist project detecting cyber attacks from network traffic patterns using the UNSW-NB15 dataset, reframed as binary anomaly detection.</p>
       <div class="pstack"><span class="ps">Scikit-learn</span><span class="ps">Oracle Cloud</span></div>
@@ -569,8 +341,8 @@ footer{padding:26px 0;}
 <!-- ═══ CONTACT ═══ -->
 <section id="contact" style="border-bottom:none">
   <div class="cbox rv">
-    <h2 style="margin-bottom:14px">Get in touch</h2>
-    <p>Open to KTP Associate roles, AI and machine learning engineering positions, and PhD opportunities in computer vision, edge AI, automation or applied machine learning.</p>
+    <h2>Get in touch</h2>
+    <p>Open to KTP Associate roles, AI and machine learning engineering positions, and PhD opportunities in computer vision, edge AI, data engineering or applied machine learning.</p>
     <div class="clinks">
       <a href="mailto:butt.nauman.akram@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/nauman-a-butt/" target="_blank" rel="noopener">LinkedIn</a>
@@ -582,65 +354,12 @@ footer{padding:26px 0;}
 <footer>
   <div class="fin">
     <span>© <span id="yr"></span> Nauman Akram Butt · Manchester, UK</span>
-    <span class="views">Portfolio views <b id="views">—</b></span>
+    <a href="#top">Back to top ↑</a>
   </div>
 </footer>
 
 </div>
 
-<script>
-/* ── theme follows local time, click clock to override ── */
-var root=document.documentElement,
-    btn=document.getElementById('tclock'),
-    ico=document.getElementById('tico'),
-    hr=document.getElementById('thr'),
-    manual=false;
-
-function ukParts(){
-  /* always read Europe/London, regardless of visitor timezone */
-  try{
-    var f=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit',hour12:false}),
-        s=f.format(new Date()).split(':');
-    return {h:parseInt(s[0],10), m:s[1]};
-  }catch(e){
-    var d=new Date();
-    return {h:d.getHours(), m:String(d.getMinutes()).padStart(2,'0')};
-  }
-}
-function setTheme(t){
-  root.setAttribute('data-theme',t);
-  ico.textContent=(t==='light')?'☀':'☾';
-}
-function tick(){
-  var p=ukParts();
-  hr.textContent=String(p.h).padStart(2,'0')+':'+p.m;
-  if(!manual) setTheme((p.h>=7 && p.h<19)?'light':'dark');
-}
-tick();
-setInterval(tick,60000);
-btn.addEventListener('click',function(){
-  manual=true;
-  setTheme(root.getAttribute('data-theme')==='light'?'dark':'light');
-});
-
-/* ── reveal ── */
-var io=new IntersectionObserver(function(es){
-  es.forEach(function(e,i){
-    if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in');},(i%4)*60);io.unobserve(e.target);}
-  });
-},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
-
-document.getElementById('yr').textContent=new Date().getFullYear();
-
-/* ── portfolio view counter ── */
-(function(){
-  var el=document.getElementById('views');
-  fetch('https://api.counterapi.dev/v1/naumanakram/portfolio/up')
-    .then(function(r){return r.json();})
-    .then(function(d){ if(d&&typeof d.count!=='undefined'){el.textContent=d.count.toLocaleString();} })
-    .catch(function(){ el.textContent='—'; });
-})();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
